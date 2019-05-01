@@ -1,25 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import './App.css';
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Movies from "./pages/Movies";
+import Personnes from "./pages/Personnes";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <div>
+          <header>
+            <Navbar/>
+          </header>
+          <Switch>
+            <Route exact={true} path='/' component={Home}/>
+            <Route exact={true} path='/home' component={Home}/>
+            <Route exact={true} path='/about' component={About}/>
+            <Route exact={true} path='/movies' component={Movies}/>
+            <Route exact={true} path='/persons' component={Personnes}/>
+            <Route path="*" component={Error} />
+          </Switch>
+          <footer>
+            <span>© 2015 IUT de Lens - Rue de l’université -SP 16 - 62307 LENS Cedex - FRANCE - Tel : +33 (0)3 21 79 32 32</span>
+          </footer>
+        </div>
+      </BrowserRouter>
   );
 }
 
