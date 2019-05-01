@@ -75,7 +75,7 @@ class Personnes extends React.Component {
     }
 
     componentDidMount() {
-        this.timerID = setInterval(() => this.tick(), 2000);
+        setInterval(() => this.tick(), 2000);
     }
 
     tick() {
@@ -91,9 +91,8 @@ class Personnes extends React.Component {
     }
 
     render() {
-        //let t = this.state.persons.map(personne => <Personne {...personne}/>);
-        let filtreAge = this.state.persons.filter(personne => personne.score > this.state.minScoreForDisplay).map(personne =>
-            <Personne {...personne} removePersonne={this.removePersonne}/>);
+        let filtreAge = this.state.persons.filter(personne => personne.score > this.state.minScoreForDisplay).map((personne,key) =>
+            <Personne key={key} {...personne} removePersonne={this.removePersonne}/>);
         return (
             <section>
                 <div className="filtre">

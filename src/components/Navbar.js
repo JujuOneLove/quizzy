@@ -11,13 +11,13 @@ export default class Navbar extends Component {
                         <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <Link to="/about">About</Link>
-                    </li>
-                    <li>
-                        <Link to="/movies">Movies</Link>
-                    </li>
-                    <li>
                         <Link to="/persons">Personnes</Link>
+                    </li>
+                    <li>
+                        <Link to="/quotes">Quotations</Link>
+                    </li>
+                    <li>
+                        <Link to="/error">Test Error</Link>
                     </li>
                 </ul>
             </nav>
