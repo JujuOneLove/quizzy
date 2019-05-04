@@ -53,7 +53,7 @@ export default class Quotations extends Component {
         return (
             <div>
                 <ul>
-                    {this.state.quotes.map(q => <Quotation key={q._id} {...q} removeQuote={this.removeQuote}/>)}
+                    {this.state.quotes.map((quote,index) => <Quotation key={quote._id} id={quote._id} message={quote.message} author={quote.author} removeQuote={this.removeQuote}/>)}
                 </ul>
                 <hr/>
                 <Form handleSubmit={e => this.handleSubmit(e)} handleNewQuote={e => this.handleNewQuote(e)}/>
