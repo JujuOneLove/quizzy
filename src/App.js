@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Personnes from "./pages/Personnes";
 import Quotations from "./pages/Quotations";
+import Error from "./pages/Error";
 
 function App() {
   return (
