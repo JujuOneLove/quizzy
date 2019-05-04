@@ -1,0 +1,41 @@
+.list{
+  display: flex;
+  flex-wrap: wrap;
+  transition: 1s;
+}
+.list article{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 10px 20px;
+  border: 1px solid grey;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  position: relative;
+}
+.list article header{
+  background: grey;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+}
+.list article .remove{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.list article header img{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+.filtre{
+  margin: 15px auto;
+}
+
+input{
+  width: 500px;
+  margin-left: 15px;
+  padding: 10px 25px;
+}
