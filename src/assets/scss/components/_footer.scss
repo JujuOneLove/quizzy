@@ -26,6 +26,14 @@ footer{
         }
       }
     }
+    a{
+      color: white;
+      text-decoration: none;
+      transition: .5s;
+      &:hover{
+        opacity: 0.9;
+      }
+    }
     @include media('desktop'){
       flex-direction: row;
       .left{

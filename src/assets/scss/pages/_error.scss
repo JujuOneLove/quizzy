@@ -18,11 +18,13 @@
     }
   }
   p {
+    color: $black-light;
     font-size: 18px;
     margin-top: 0;
   }
 
   h1 {
+    color: $black;
     font-size: 10em;
     margin: 0;
   }
@@ -39,14 +41,14 @@
   }
 
   .bubble {
-    background: linear-gradient($blue,#EC5DC1);
+    background: linear-gradient(#EC5DC1,#D61A6F);
     border-radius: 50%;
     box-shadow: 0 30px 15px rgba(#000, .15);
     position: absolute;
     z-index: -1;
     &:before, &:after {
       content: '';
-      background: linear-gradient(#EC5DC1,$violet);
+      background: linear-gradient(#EC5DC1,#D61A6F);
       border-radius: 50%;
       box-shadow: 0 30px 15px rgba(#000, .15);
       position: absolute;
@@ -61,6 +63,10 @@
         height: 13vmin;
         bottom: -25vh;
         right: -10vmin;
+        display: none;
+        @include media('desktop'){
+          display: block;
+        }
       }
     }
     &:nth-child(2) {

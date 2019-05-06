@@ -1,0 +1,14 @@
+.btn,button{
+  border-radius: 25px;
+  border-width: 1px;
+  padding: .625rem 1.125rem;
+  background: linear-gradient(#EC5DC1,$violet);
+  color: white;
+  text-decoration: none;
+  transition: .5s;
+  &:hover{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}

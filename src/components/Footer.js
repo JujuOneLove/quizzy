@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import facebook from '../assets/svg/social/facebook.svg'
 import twitter from '../assets/svg/social/twitter.svg'
+import {Link} from "react-router-dom";
 
 export default class Form extends Component {
     render() {
@@ -8,7 +9,7 @@ export default class Form extends Component {
             <footer>
                 <div className="container">
                     <div className="left"><a href="https://facebook.com"><img src={facebook} alt="Facebook"/></a><a href="https://twitter.com"><img src={twitter} alt="Twitter"/></a></div>
-                    <div className="right">© Quizzy  2019 - All rights reserved - Mentions légales  - Plan du site</div>
+                    <div className="right">© <Link to="/">Quizzy</Link>  2019 - All rights reserved -  <Link to="/mentions-legales">Mentions légales</Link>  - <Link to="/plan-du-site">Plan du site</Link></div>
                 </div>
                 <div id="inner-wrap">
                     <svg className="waves" xmlns="http://www.w3.org/2000/svg" width="1440" height="321.75"

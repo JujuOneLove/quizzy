@@ -15,9 +15,6 @@ export default class Navbar extends Component {
                         <li>
                             <Link to="/quotes">Quotations</Link>
                         </li>
-                        <li>
-                            <Link to="/error">Test Error</Link>
-                        </li>
                     </ul>
                 </div>
             </nav>

@@ -12,7 +12,7 @@ export default class Error extends Component {
                 <div className="content">
                     <h1>404</h1>
                     <p>On dirait que tu es perdu ... C'est un problème?</p>
-                    <Link className="btn" to="/">Page d'accueil</Link>
+                    <Link className="btn" to="/">Retourner à la page d'accueil</Link>
                 </div>
             </div>
         );
