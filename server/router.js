@@ -3,12 +3,7 @@ const bodyParser = require("body-parser");
 const router = express.Router();
 
 let Quotes = require('./db/schemaQuote');
-insertQuote = (quote) => {
-    quotes.push(quote);
-};
-removeQuote = (index) => {
-    quotes = quotes.filter((q, i) => i !== +index);
-};
+
 router
     .use(express.static('resources'))
     .use(bodyParser.json())

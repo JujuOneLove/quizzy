@@ -76,7 +76,7 @@
     "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
-    "resetDB": "mongo quizz ./server/db/data.js",
+    "resetDB": "mongo quiz ./server/db/data.js",
     "server": "nodemon ./server/server.js",
     "test mocha": "mocha --compilers js:babel-core/register ./test/*.js --env=jsdom",
     "eject": "react-scripts eject",
