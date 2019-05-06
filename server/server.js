@@ -5,7 +5,7 @@ const router = require('./router');
 const cors = require('cors');
 const morgan = require('morgan');
 //Connexion à la base de donnée
-mongoose.connect('mongodb://localhost:27017/quotes', { useNewUrlParser: true }).then(() => {
+mongoose.connect('mongodb://localhost:27017/quizz', { useNewUrlParser: true }).then(() => {
     console.log('Connected to mongoDB')
 }).catch(e => {
     console.log('Error while DB connecting');
