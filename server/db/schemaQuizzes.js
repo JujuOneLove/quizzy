@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
-var quizzesSchema = mongoose.Schema({
+var quizzesSchema = new mongoose.Schema({
     name: String,
-    logoName: String,
-    createdBy: String,
+    logo: String,
+    createdBy: Object,
     keywords: [String],
     questionsAndAnswers: [{
         question: String,
