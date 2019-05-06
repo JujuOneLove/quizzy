@@ -1,35 +1,32 @@
 //use exple1
 db.users.remove({});
 db.quizzes.remove({});
-var user1 = db.users.insert(
+db.users.insert(
     {
         "user": "admin",
         "password": "admin"
     });
-var user2 = db.users.insert(
+db.users.insert(
     {
         "user": "antho",
         "password": "antho"
     });
-var user3 = db.users.insert(
+db.users.insert(
     {
         "user": "flo",
         "password": "flo"
     });
-var user4 = db.users.insert(
+db.users.insert(
     {
         "user": "jul",
         "password": "jul"
     });
+var user2 = db.users.findOne({"user" : "antho"});
 
-var user = {
-    "user": "antho",
-    "password": "antho"
-};
 var quiz1 = db.quizzes.insert({
     "name": "La France",
     "logo": "",
-    "createdBy": user,
+    "createdBy": user2,
     "keywords": ["pays", "france"],
     "questionsAndAnswers": [
         {
@@ -59,7 +56,7 @@ var quiz1 = db.quizzes.insert({
 var quiz2 = db.quizzes.insert({
     "name": "La Coupe du monde de football",
     "logo": "",
-    "createdBy": user,
+    "createdBy": user2,
     "keywords": ["coupe du monde", "football", "soccer", "cdm"],
     "questionsAndAnswers": [
         {
@@ -85,4 +82,3 @@ var quiz2 = db.quizzes.insert({
         },
     ]
 });
-
