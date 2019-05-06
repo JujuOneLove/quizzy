@@ -11,13 +11,29 @@ router
         extended: true
     }))
     .get("/quizzes", (req, res) => {
-        Quizzes.find()
-            .then(notes => {
-                res.json(notes);
-            }).catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while retrieving notes."
-            });
+        Quizzes.find({}, function (err, quizzes) {
+            if (err) {
+                res.status(400);
+                res.json({
+                    error: "Bad request"
+                });
+            }else{
+                res.json(quizzes);
+                res.status(200);
+            }
+        });
+    })
+    .get("/quizzes/:id", (req, res) => {
+        Quizzes.findById(req.params.id, function (err, quizzes) {
+            if (err) {
+                res.status(400);
+                res.json({
+                    error: "Bad request"
+                });
+            }else{
+                res.json(quizzes);
+                res.status(200);
+            }
         });
     })
     .use((req, res) => {
