@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var questionsSchema = require('./schemaQuestions');
 
-var quizSchema = mongoose.Schema({
+var quizzesSchema = mongoose.Schema({
     id: String,
     name: String,
     logoName: String,
@@ -10,4 +10,4 @@ var quizSchema = mongoose.Schema({
     questionsAndAnswers: [questionsSchema]
 });
 
-module.exports = mongoose.model('quiz', quizSchema);
+module.exports = mongoose.model('quizzes', quizzesSchema);
