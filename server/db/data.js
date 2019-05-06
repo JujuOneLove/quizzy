@@ -1,25 +1,27 @@
 //use exple1
 db.users.remove({});
-var user1 = db.users.insert(
+db.quizzes.remove({});
+db.users.insert(
     {
         "user": "admin",
         "password": "admin"
     });
-var user2 = db.users.insert(
+db.users.insert(
     {
         "user": "antho",
         "password": "antho"
     });
-var user3 = db.users.insert(
+db.users.insert(
     {
         "user": "flo",
         "password": "flo"
     });
-var user4 = db.users.insert(
+db.users.insert(
     {
         "user": "jul",
         "password": "jul"
     });
+var user2 = db.users.findOne({"user" : "antho"});
 
 var quiz1 = db.quizzes.insert({
     "name": "La France",
@@ -80,4 +82,3 @@ var quiz2 = db.quizzes.insert({
         },
     ]
 });
-
