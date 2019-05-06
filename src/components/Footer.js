@@ -7,7 +7,7 @@ export default class Form extends Component {
         return (
             <footer>
                 <div className="container">
-                    <div className="left"><a href="https://facebook.com"><img src={facebook} alt="Facebook"/></a><a href="https://facebook.com"><img src={twitter} alt="Twitter"/></a></div>
+                    <div className="left"><a href="https://facebook.com"><img src={facebook} alt="Facebook"/></a><a href="https://twitter.com"><img src={twitter} alt="Twitter"/></a></div>
                     <div className="right">© Quizzy  2019 - All rights reserved - Mentions légales  - Plan du site</div>
                 </div>
                 <div id="inner-wrap">
