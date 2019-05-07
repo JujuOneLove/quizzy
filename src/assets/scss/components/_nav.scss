@@ -50,19 +50,33 @@
             }
           }
           .filter{
-          position: fixed;
-          width: 100%;
-          left: 0;
-          top: 75px;
+            position: fixed;
+            width: 100%;
+            left: 0;
+            right: 0;
+            top: 75px;
+            margin: auto;
+            padding: 0;
             ul{ background: white;
               display: flex;
-              width: 300px;
+              width: 280px;
               text-align: center;
               flex-direction: column;
+              box-shadow: 0 -4px 30px -4px $black-light;
+              margin-right: 1px;
               li{
-                padding: 5px;
+                padding: 10px;
+                border-bottom: 1px solid $black-light;
+                &:last-child{
+                  border: none;
+                }
                 a{
                   color: $black-light;
+                }
+                &:hover{
+                  a{
+                    color: $violet;
+                  }
                 }
               }
             }
