@@ -31,7 +31,7 @@ export default class CreateQuiz extends Component {
         e.preventDefault();
         const fd = new FormData();
         fd.append('picture', e.target.picture1.files[0], e.target.picture1.files[0].name);
-        await axios.post(8081 + 'upload', fd).then(
+        await axios.post('http://localhost:8081/upload', fd).then(
             res => console.log(res));
         await axios.post('http://localhost:8081/quizzes',this.state.quiz);
     }

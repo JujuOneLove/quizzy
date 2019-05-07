@@ -52,7 +52,7 @@ router
         const quiz = req.body;
         Quizzes.create({
             name: quiz.name,
-            logo: 'images/uploads/${req.file.filename}',
+            logo: 'images/uploads/'+req.files.picture.filename,
             createdBy: quiz.createdBy,
             keywords: quiz.keywords,
             questionsAndAnswers: quiz.questionsAndAnswers
