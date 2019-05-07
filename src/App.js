@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Personnes from "./pages/Personnes";
 import Quotations from "./pages/Quotations";
 import Error from "./pages/Error";
-import CreateQuiz from "./pages/CreateQuiz";
+import CreerQuiz from "./pages/CreerQuiz";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
               <Route exact={true} path='/' component={Home}/>
               <Route exact={true} path='/persons' component={Personnes}/>
               <Route exact={true} path='/quotes' component={Quotations}/>
-              <Route exact={true} path='/quiz/new' component={CreateQuiz}/>
+              <Route exact={true} path='/creer/quiz' component={CreerQuiz}/>
               <Route path="*" component={Error} />
             </Switch>
           </main>
