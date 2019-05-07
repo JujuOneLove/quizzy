@@ -36,6 +36,27 @@ router
             }
         });
     })
+    .post("/quizzes/new", (req, res)=>{
+        const quiz = req.body;
+        Quizzes.create({
+            name: quiz.name,
+            logo: quiz.logo,
+            createdBy: quiz.createdBy,
+            keywords: quiz.keywords,
+            questionsAndAnswers: quiz.questionsAndAnswers
+        }, function (err, quizBdd) {
+            if (err) {
+                res.status(400);
+                res.json({
+                    error: "Bad request"
+                });
+            }else{
+                res.json(quizBdd);
+                res.status(200);
+            }
+        });
+
+    })
     .use((req, res) => {
         res.status(400);
         res.json({
