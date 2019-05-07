@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
+import Quizz from "./Quizz";
 
 export default class Quotation extends Component {
     render() {
+        if (!this.props.quizzes) {
+            return (<p>loading data....</p>)
+        }
         return (
-            <article className="quizz">
-                <header>
-                    <img src={this.props.image} alt={this.props.name}/>
-                </header>
-                <main>
-                    <h3>{this.props.name}</h3>
-                </main>
-            </article>
+            <div className="flex wrap">
+                {this.props.quizzes.map((quiz,index) => <Quizz key={quiz._id} id={quiz._id} name={quiz.name} image={quiz.logo}/>)}
+            </div>
         );
     }
 }

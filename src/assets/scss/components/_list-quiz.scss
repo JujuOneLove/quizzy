@@ -1,0 +1,31 @@
+.flex{
+  a{
+    &:nth-child(2n) {
+      .quiz {
+        header {
+          &:after {
+            background: linear-gradient(#D61A6F,$violet);
+          }
+        }
+      }
+    }
+    &:nth-child(3n) {
+      .quiz {
+        header {
+          &:after {
+            background: linear-gradient($violet,#EC5DC1);
+          }
+        }
+      }
+    }
+    &:nth-child(4n) {
+      .quiz {
+        header {
+          &:after {
+            background: linear-gradient(#EC5DC1,$blue);
+          }
+        }
+      }
+    }
+  }
+}
