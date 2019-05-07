@@ -5,13 +5,13 @@ var usersSchema = new mongoose.Schema({
     name: String,
     password: String,
     roles: [String],
-    createdQuizzes: [quizzes],
+    createdQuizzes: [{}],
     scores: [{
-        quizId: quizzes,
+        quizId: {},
         username: String,
         score: Number,
         dateTime: {type: Date, default: Date.now}
     }]
-});
+}, { versionKey: false });
 
 module.exports = mongoose.model('users', usersSchema);

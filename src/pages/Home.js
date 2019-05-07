@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import ListQuizz from "../components/List-Quizz";
+import Login from "./Login";
 
 
 export default class Home extends Component {
@@ -21,6 +22,9 @@ export default class Home extends Component {
         if (!this.state.quizzes) {
             return (<p>loading data....</p>)
         }
+        if (!Login.getUser()) {
+            return (<p>Access forbidden</p>);
+        }else
         return (
             <div className="App">
                 <h1>Tout nos quiz sont ici !</h1>

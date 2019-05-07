@@ -3,22 +3,22 @@ db.users.remove({});
 db.quizzes.remove({});
 db.users.insert(
     {
-        "user": "admin",
+        "name": "admin",
         "password": "admin"
     });
 db.users.insert(
     {
-        "user": "antho",
+        "name": "antho",
         "password": "antho"
     });
 db.users.insert(
     {
-        "user": "flo",
+        "name": "flo",
         "password": "flo"
     });
 db.users.insert(
     {
-        "user": "jul",
+        "name": "jul",
         "password": "jul"
     });
 var user2 = db.users.findOne({"user" : "antho"});

@@ -7,7 +7,41 @@ import Personnes from "./pages/Personnes";
 import Quotations from "./pages/Quotations";
 import Error from "./pages/Error";
 import Quiz from "./pages/Quiz";
+import Login from "./pages/Login"
 
+class App extends React.Component{
+
+  constructor(props) {
+    super(props);
+    this.state = {connected: false};
+  }
+
+  checkConnexion(connected) {
+    if (connected !== this.state.connected) this.setState({connected: connected})
+  }
+
+  render() {
+    return (
+        <BrowserRouter>
+          <div>
+            <header className="header">
+              <Navbar connected={this.state.connected}/>
+            </header>
+            <main role="main">
+              <Switch>
+                <Route exact={true} path='/' component={Home}/>
+                <Route exact={true} path='/persons' component={Personnes}/>
+                <Route exact={true} path='/quotes' component={Quotations}/>
+                <Route exact={true} path="/login"
+                       render={props => <Login {...props} checkConnexion={b => this.checkConnexion(b)}/>}/>
+                <Route path="*" component={Error}/>
+              </Switch>
+            </main>
+            <Footer/>
+          </div>
+        </BrowserRouter>
+    );
+  }
 function App() {
   return (
       <BrowserRouter>
