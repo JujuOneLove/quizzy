@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class Quotation extends Component {
+export default class ListQuizz extends Component {
     render() {
         return (
             <article className="quizz">

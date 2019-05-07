@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 
-export default class Quotation extends Component {
+export default class Quizz extends Component {
     render() {
         return (
             <Link to={"/jouer/" + this.props.id} className="quiz-link">
