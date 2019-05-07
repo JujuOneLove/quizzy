@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import Login from "./Login";
 
 export default class Home extends Component {
     constructor(props) {
@@ -16,6 +17,9 @@ export default class Home extends Component {
         });
     }
     render() {
+        if (!Login.getUser()) {
+            return (<p>Access forbidden</p>);
+        }else
         return (
             <div className="App">
                <h1>Je suis la Home</h1>
