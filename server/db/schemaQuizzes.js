@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-const scores = require('./schemaScores');
 
 var quizzesSchema = new mongoose.Schema({
     name: String,
@@ -14,7 +13,11 @@ var quizzesSchema = new mongoose.Schema({
             answerText: String
         }]
     }],
-    scores: [scores]
+    topScore: {
+        username: String,
+        score: Number,
+        dateTime: {type: Date}
+    }
 });
 
 module.exports = mongoose.model('quizzes', quizzesSchema);
