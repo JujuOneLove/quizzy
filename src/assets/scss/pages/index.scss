@@ -1,0 +1,17 @@
+body{
+  margin: 0;
+}
+main{
+  @include media('desktop'){
+    min-height: 63.9vh;
+  }
+}
+.container{
+  max-width: $containerWidth;
+  margin: auto;
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+}
