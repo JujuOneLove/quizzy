@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from "axios";
 import ListQuizz from "../components/List-Quizz";
 import Login from "./Login";
+import Error from "./Error401";
+import {Link} from "react-router-dom";
 
 
 export default class Home extends Component {
@@ -23,7 +25,9 @@ export default class Home extends Component {
             return (<p>loading data....</p>)
         }
         if (!Login.getUser()) {
-            return (<p>Access forbidden</p>);
+            return (
+                <Error/>
+            );
         }else
         return (
             <div className="App">

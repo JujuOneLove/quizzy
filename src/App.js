@@ -3,8 +3,6 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer"
 import Home from "./pages/Home";
-import Personnes from "./pages/Personnes";
-import Quotations from "./pages/Quotations";
 import Error from "./pages/Error";
 import CreerQuiz from "./pages/CreerQuiz";
 import Quiz from "./pages/Quiz";
@@ -32,10 +30,8 @@ class App extends React.Component {
               <Switch>
                 <Route exact={true} path='/' component={Home}/>
                 <Route exact={true} path="/jouer/:quiz" component={Quiz}/>
-                <Route exact={true} path='/persons' component={Personnes}/>
-                <Route exact={true} path='/quotes' component={Quotations}/>
                 <Route exact={true} path='/creer/quiz' component={CreerQuiz}/>
-                <Route exact={true} path="/login"
+                <Route exact={true} path="/connexion"
                        render={props => <Login {...props} checkConnexion={b => this.checkConnexion(b)}/>}/>
                 <Route path="*" component={Error}/>
               </Switch>

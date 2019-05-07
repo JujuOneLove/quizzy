@@ -40,7 +40,7 @@ router
             }
         });
     })
-    .post("/login", (req, res) => {
+    .post("/connexion", (req, res) => {
         if (!req.body.username || !req.body.password) {
             res.json({isConnected: false})
         } else {

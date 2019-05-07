@@ -116,7 +116,7 @@ class CreerQuiz extends Component {
                         <label>
                             Réponse:
                             <input type="radio" value="Vrai" name={`answers-${idx}`} key={`question-${idx}-true`}/> {question.answers[0]}
-                            <input type="radio" value="Faux" name={`answers-${idx}`} key={`question-${idx}-false`} /> {question.answers[1]
+                            <input type="radio" value="Faux" name={`answers-${idx}`} key={`question-${idx}-false`} /> {question.answers[1]}
                         </label>
 
                         <button
