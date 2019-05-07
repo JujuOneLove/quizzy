@@ -13,8 +13,7 @@ class Login extends React.Component {
         }
         this.state = {
             user: Login.getUser(),
-            authenticated: false,
-            renderForm: true
+            authenticated: false
         };
         this.login();
     }
@@ -70,7 +69,6 @@ class Login extends React.Component {
     handleForm(e) {
         e.preventDefault();
         this.login();
-        this.toggleForm();
     };
 
     setUsername(e) {
@@ -85,12 +83,7 @@ class Login extends React.Component {
         this.setState(user)
     }
 
-    toggleForm() {
-        this.setState({renderForm: !this.state.renderForm});
-    };
-
     renderForm() {
-        if (!this.state.renderForm) return null;
         return (
             <form className="form-inline my-2 my-lg-0" onSubmit={e => this.handleForm(e)}>
                 <div>
@@ -115,12 +108,12 @@ class Login extends React.Component {
     render() {
         if (this.state.user && this.state.authenticated) {
             return (
-                <>
+                <div>
                     <p>{this.state.user.username}</p>
                     <button type="button" name="logout" className="btn btn-secondary"
                             onClick={() => this.logout()}>logout
                     </button>
-                </>
+                </div>
             )
         } else {
             return (

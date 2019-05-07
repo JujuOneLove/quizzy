@@ -4,6 +4,7 @@ const router = express.Router();
 
 let Quizzes = require('./db/schemaQuizzes');
 let Users = require('./db/schemaUsers');
+const md5 = require('md5');
 
 router
     .use(express.static('resources'))
@@ -41,7 +42,7 @@ router
         if (!req.body.username || !req.body.password) {
             res.json({isConnected: false})
         } else {
-            Users.findOne({name: req.body.username, password: req.body.password})
+            Users.findOne({name: req.body.username, password: md5(req.body.password)})
                 .exec((err, data) => {
                     if (err) console.log("error", err);
                     else {
@@ -61,7 +62,7 @@ router
                     else {
                         if (data) res.json({isConnected: false});
                         else {
-                            const q = new Users({name:req.body.username,password:req.body.password});
+                            const q = new Users({name:req.body.username,password:md5(req.body.password)});
                             q.save()
                                 .then(() => res.json({isConnected: true}))
                                 .catch(err => res.status(400).send("unable to save to database:", err))
