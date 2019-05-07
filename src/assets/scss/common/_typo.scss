@@ -10,30 +10,21 @@ h1,h2,h3,h4,h5,h6{
 }
 
 h1{
-  font-size: 4em;
-  margin: 0;
-  @include media('tablet'){
-    font-size: 3em;
-  }
+  font-size: 1.8em;;
+  margin: 0 0 30px;
+  color: $black;
 }
 
 h2{
-  font-size: 3em;
-  @include media('tablet'){
-    font-size: 2em;
-  }
+  font-size: 1.7em;
 }
 
 h3{
-  font-size: 2em;
-  @include media('tablet'){
-    font-size: 1.5em;
-  }
+  font-size: 1.2em;
 }
 a{
   &:focus{
     outline: none;
   }
-  width:auto;
-  display:inline-block
+  text-decoration: none;
 }

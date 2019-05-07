@@ -18,11 +18,8 @@ export default class Home extends Component {
         });
     }
     render() {
-        if (!this.state.quizzes) {
-            return (<p>loading data....</p>)
-        }
         return (
-            <div className="App">
+            <div className="container">
                 <h1>Tout nos quiz sont ici !</h1>
                 <ListQuizz quizzes={this.state.quizzes}/>
             </div>

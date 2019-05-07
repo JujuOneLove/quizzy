@@ -1,0 +1,49 @@
+.quiz{
+  margin: 10px;
+  position: relative;
+  &-link{
+    margin: auto;
+    display: inline-block;
+  }
+  &:hover{
+    opacity: 0.9;
+  }
+  header{
+    position: relative;
+    width: 275px;
+    height: 185px;
+    img{
+      width: 275px;
+      height: 185px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 15px;
+    }
+    &:after{
+      position: absolute;
+      content: '';
+      display: block;
+      background: linear-gradient($blue,#D61A6F);
+      width: 275px;
+      height: 185px;
+      top: 0;
+      left: 0;
+      border-radius: 15px;
+      opacity: 0.7;
+    }
+  }
+  main{
+    position: absolute;
+    top: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    min-height: auto;
+    text-align: center;
+    padding: 20px;
+    h3{
+      color: white;
+      margin: auto;
+    }
+  }
+}

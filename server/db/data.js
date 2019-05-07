@@ -25,7 +25,7 @@ var user2 = db.users.findOne({"user" : "antho"});
 
 var quiz1 = db.quizzes.insert({
     "name": "La France",
-    "logo": "",
+    "logo": "/img/france.jpg",
     "createdBy": user2,
     "keywords": ["pays", "france"],
     "questionsAndAnswers": [
@@ -55,7 +55,7 @@ var quiz1 = db.quizzes.insert({
 
 var quiz2 = db.quizzes.insert({
     "name": "La Coupe du monde de football",
-    "logo": "",
+    "logo": "/img/coupe.jpg",
     "createdBy": user2,
     "keywords": ["coupe du monde", "football", "soccer", "cdm"],
     "questionsAndAnswers": [
