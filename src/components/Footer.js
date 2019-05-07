@@ -3,7 +3,7 @@ import facebook from '../assets/svg/social/facebook.svg'
 import twitter from '../assets/svg/social/twitter.svg'
 import {Link} from "react-router-dom";
 
-export default class Form extends Component {
+export default class Footer extends Component {
     render() {
         return (
             <footer>

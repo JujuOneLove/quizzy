@@ -2,6 +2,7 @@ body{
   margin: 0;
 }
 main{
+  margin-top: 100px;
   @include media('desktop'){
     min-height: 63.9vh;
   }
@@ -9,6 +10,7 @@ main{
 .container{
   max-width: $containerWidth;
   margin: auto;
+  padding: 0 10px;
 }
 
 ul{

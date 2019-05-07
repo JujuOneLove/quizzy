@@ -2,6 +2,7 @@ footer{
   position: relative;
   overflow: hidden;
   min-height: 200px;
+  margin-top: 50px;
   .container{
     position: absolute;
     bottom: 0;
@@ -15,7 +16,11 @@ footer{
     color: $white;
     text-align: center;
     .left {
-      img {
+      margin-bottom: 10px;
+      @include media('desktop'){
+        margin: 0;
+      }
+        img {
         width: 14px;
         height: 14px;
         margin-left: 15px;

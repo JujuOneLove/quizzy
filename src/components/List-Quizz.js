@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Quizz from "./Quizz";
 
-export default class Quotation extends Component {
+export default class ListQuizz extends Component {
     render() {
         if (!this.props.quizzes) {
             return (<p>loading data....</p>)
