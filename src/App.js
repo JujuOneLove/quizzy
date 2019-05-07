@@ -33,6 +33,8 @@ class App extends React.Component {
                 <Route exact={true} path='/creer/quiz' component={CreerQuiz}/>
                 <Route exact={true} path="/connexion"
                        render={props => <Login {...props} checkConnexion={b => this.checkConnexion(b)}/>}/>
+                <Route exact={true} path="/admin"
+                       render={props => <Login {...props} checkConnexion={b => this.checkConnexion(b)}/>}/>
                 <Route path="*" component={Error}/>
               </Switch>
             </main>
