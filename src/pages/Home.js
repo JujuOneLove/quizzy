@@ -3,8 +3,6 @@ import axios from "axios";
 import ListQuizz from "../components/List-Quizz";
 import Login from "./Login";
 import Error from "./Error401";
-import {Link} from "react-router-dom";
-
 
 export default class Home extends Component {
     constructor(props) {

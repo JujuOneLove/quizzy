@@ -3,6 +3,7 @@ import axios from "axios";
 import {Route} from 'react-router-dom';
 
 import {HTTP_SERVER_PORT} from "../constants";
+import Buble from "../components/Buble";
 
 class Login extends React.Component {
     constructor(props) {
@@ -85,21 +86,20 @@ class Login extends React.Component {
 
     renderForm() {
         return (
-            <form className="form-inline my-2 my-lg-0" onSubmit={e => this.handleForm(e)}>
+            <form className="connexion" onSubmit={e => this.handleForm(e)}>
                 <div>
-                    <label>Username:</label>
+                    <label>Identifiant :</label>
                     <input type="text" id="username"
                            onChange={e => this.setUsername(e)}/>
                 </div>
                 <div>
-                    <label>Password:</label>
+                    <label>Mot de passe:</label>
                     <input type="password" name="password"
                            onChange={e => this.setPassword(e)}/>
                 </div>
-                <div>
-                    <button type="submit" name="login">Login</button>
-                    <button name="signup" onClick={() => this.signUp(this.state.user)}>Sign up
-                    </button>
+                <div className="flex wrap">
+                    <button name="signup" onClick={() => this.signUp(this.state.user)}>S'inscrire</button>
+                    <button type="submit" name="login">Connexion</button>
                 </div>
             </form>
         );
@@ -108,18 +108,24 @@ class Login extends React.Component {
     render() {
         if (this.state.user && this.state.authenticated) {
             return (
-                <div>
-                    <p>{this.state.user.username}</p>
-                    <button type="button" name="logout" className="btn btn-secondary"
-                            onClick={() => this.logout()}>logout
-                    </button>
+                <div className="container">
+                    <Buble/>
+                    <div className="content">
+                        <p>{this.state.user.username}</p>
+                        <button type="button" name="logout" className="btn btn-secondary"
+                                onClick={() => this.logout()}>logout
+                        </button>
+                    </div>
                 </div>
             )
         } else {
             return (
-                <>
-                    {this.renderForm()}
-                </>
+                <div className="container">
+                    <Buble/>
+                    <div className="content connexion">
+                        {this.renderForm()}
+                    </div>
+                </div>
             )
         }
 

@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import Buble from "../components/Buble";
 
 export default class Error extends Component {
     render() {
         return (
             <div className="error404 container">
-                <div className="bubble"></div>
-                <div className="bubble"></div>
-                <div className="bubble"></div>
-                <div className="bubble"></div>
+                <Buble/>
                 <div className="content">
                     <h1>404</h1>
                     <p>On dirait que tu es perdu ... C'est un problème?</p>

@@ -1,4 +1,29 @@
 form{
+  &.connexion{
+    background: white;
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+    max-width: 280px;
+    box-shadow: 0 -4px 30px -4px #616161;
+    padding: 25px 25px 35px;
+    margin: auto;
+    border-radius: 15px;
+    label{
+      color: $black;
+    }
+    input{
+      display: block;
+      max-width: 265px;
+      width: 100%;
+      margin: 2px auto 16px 0;
+    }
+    button{
+      margin: 10px auto;
+      font-size: 0.8em;
+    }
+  }
 }
 
 input,textarea,select{
@@ -6,4 +31,9 @@ input,textarea,select{
   border-radius: 25px;
   border-color: $violet;
   background: white;
+  padding: 5px;
+  height: 23px;
+  width: 125px;
+  font-size: 0.9em;
+  color: $black-light;
 }
