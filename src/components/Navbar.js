@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import logo from "../assets/svg/logo.svg"
 import user from "../assets/svg/user.svg"
-import search from "../assets/svg/search.svg"
 import axios from "axios";
 import Search from "./Search";
 export default class Navbar extends Component {
@@ -37,7 +36,6 @@ export default class Navbar extends Component {
                                     <div id="filtre">
                                         <Search quizzes={searchTab}/>
                                     </div>
-                                    <button><img src={search} alt="Search"/></button>
                                 </div>
                             </li>
                             <li>
@@ -56,7 +54,6 @@ export default class Navbar extends Component {
                             <li>
                                 <div className="search">
                                     <input type="text" placeholder="Chercher un quiz" value={this.state.search} onChange={this.onChange.bind(this)}/>
-                                    <button><img src={search} alt="Search"/></button>
                                 </div>
                             </li>
                             <li>
