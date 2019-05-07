@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const router = express.Router();
 
+
+
 let Quizzes = require('./db/schemaQuizzes');
 
 router
@@ -36,11 +38,21 @@ router
             }
         });
     })
+    .post('/upload',
+        (req, res) => {
+            req.files.picture.mv(__dirname + '/resources/pictures/' + req.files.picture.name,
+                (err) => {
+                    if (err)
+                        return res.status(500).send(err);
+                    res.json({ok: "ok"});
+                }
+            );
+        })
     .post("/quizzes/new", (req, res)=>{
         const quiz = req.body;
         Quizzes.create({
             name: quiz.name,
-            logo: quiz.logo,
+            logo: 'images/uploads/${req.file.filename}',
             createdBy: quiz.createdBy,
             keywords: quiz.keywords,
             questionsAndAnswers: quiz.questionsAndAnswers
