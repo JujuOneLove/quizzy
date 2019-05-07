@@ -4,6 +4,8 @@ const router = require('./router');
 
 const cors = require('cors');
 const morgan = require('morgan');
+const fileUpload = require('express-fileupload');
+
 
 //Connexion à la base de donnée
 mongoose.connect('mongodb://localhost:27017/quiz', { useNewUrlParser: true }).then(() => {
@@ -17,6 +19,10 @@ const app = express();
 const port = 8081;
 
 app.use(morgan('combined'));
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/'
+}));
 app.use(cors());
 app.use(router)
     .listen(port, () => console.log('Example app listening on port ' + port));

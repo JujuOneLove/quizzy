@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Personnes from "./pages/Personnes";
 import Quotations from "./pages/Quotations";
 import Error from "./pages/Error";
+import CreerQuiz from "./pages/CreerQuiz";
 import Quiz from "./pages/Quiz";
 import Login from "./pages/Login"
 
@@ -43,5 +44,25 @@ class App extends React.Component {
         </BrowserRouter>
     );
   }
+function App() {
+  return (
+      <BrowserRouter>
+        <div>
+          <header className="header">
+            <Navbar/>
+          </header>
+          <main role="main">
+            <Switch>
+              <Route exact={true} path='/' component={Home}/>
+              <Route exact={true} path='/persons' component={Personnes}/>
+              <Route exact={true} path='/quotes' component={Quotations}/>
+              <Route exact={true} path='/creer/quiz' component={CreerQuiz}/>
+              <Route path="*" component={Error} />
+            </Switch>
+          </main>
+          <Footer/>
+        </div>
+      </BrowserRouter>
+  );
 }
 export default App;
