@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import ListQuizz from "../components/List-Quizz";
+
 
 export default class Home extends Component {
     constructor(props) {
@@ -16,9 +18,13 @@ export default class Home extends Component {
         });
     }
     render() {
+        if (!this.state.quizzes) {
+            return (<p>loading data....</p>)
+        }
         return (
             <div className="App">
-               <h1>Je suis la Home</h1>
+                <h1>Tout nos quiz sont ici !</h1>
+                <ListQuizz quizzes={this.state.quizzes}/>
             </div>
         );
     }

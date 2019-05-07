@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import logo from "../assets/svg/logo.svg"
-
+import user from "../assets/svg/user.svg"
 export default class Navbar extends Component {
     render() {
         return (
@@ -10,10 +10,13 @@ export default class Navbar extends Component {
                     <Link to="/"><img className="logo" src={logo} alt="Quizzy - Site Officiel des Quiz"/></Link>
                     <ul>
                         <li>
-                            <Link to="/persons">Personnes</Link>
+                            <Link to="/">Personnes</Link>
                         </li>
                         <li>
-                            <Link to="/quotes">Quotations</Link>
+
+                        </li>
+                        <li>
+                            <Link to="/connexion"><img src={user} alt="Connexion"/></Link>
                         </li>
                     </ul>
                 </div>
