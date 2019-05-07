@@ -9,7 +9,7 @@ import Error from "./pages/Error";
 import Quiz from "./pages/Quiz";
 import Login from "./pages/Login"
 
-class App extends React.Component{
+class App extends React.Component {
 
   constructor(props) {
     super(props);
@@ -30,6 +30,7 @@ class App extends React.Component{
             <main role="main">
               <Switch>
                 <Route exact={true} path='/' component={Home}/>
+                <Route exact={true} path="/jouer/:quiz" component={Quiz}/>
                 <Route exact={true} path='/persons' component={Personnes}/>
                 <Route exact={true} path='/quotes' component={Quotations}/>
                 <Route exact={true} path="/login"
@@ -42,27 +43,5 @@ class App extends React.Component{
         </BrowserRouter>
     );
   }
-function App() {
-  return (
-      <BrowserRouter>
-        <div>
-          <header className="header">
-            <Navbar/>
-          </header>
-          <main role="main">
-            <Switch>
-              <Route exact={true} path='/' component={Home}/>
-              <Route exact={true} path="/jouer/:quiz" component={Quiz}/>
-
-              <Route exact={true} path='/persons' component={Personnes}/>
-              <Route exact={true} path='/quotes' component={Quotations}/>
-              <Route path="*" component={Error} />
-            </Switch>
-          </main>
-          <Footer/>
-        </div>
-      </BrowserRouter>
-  );
 }
-
 export default App;
