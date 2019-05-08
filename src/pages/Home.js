@@ -17,9 +17,12 @@ export default class Home extends Component {
         });
     }
     render() {
+        let top = this.state.quizzes.filter(quizz => ((quizz.keywords.indexOf('top')) !== -1) )
         return (
             <div className="container">
-                <h1>Tout nos quiz sont ici !</h1>
+                <h2>Top quiz !</h2>
+                <ListQuizz quizzes={top}/>
+                <h2>Tout nos quiz sont ici !</h2>
                 <ListQuizz quizzes={this.state.quizzes}/>
             </div>
         );
