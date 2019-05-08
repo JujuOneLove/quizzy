@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import {HTTP_SERVER_PORT} from "../constants";
 import Buble from "../components/Buble";

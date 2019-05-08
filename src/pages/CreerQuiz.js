@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Error from "./Error401";
+import Login from "./Login";
 
 class CreerQuiz extends Component {
     constructor(props) {
@@ -98,7 +100,11 @@ class CreerQuiz extends Component {
     };
 
     render() {
-        return (
+        if (!Login.getUser()) {
+            return (
+                <Error/>
+            );
+        } else return (
             <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
                 <label>
                     Name

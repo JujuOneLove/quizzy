@@ -17,14 +17,13 @@ class Question extends Component {
         return (
             <div>
                 <h3>{question.question}</h3>
-                <hr/>
                 <ul>
                     {question.answers.map((choice) => {
                         return (
-                            <li key={Math.floor(Math.random() * Math.floor(1337))}>
+                            <button className="btn" key={Math.floor(Math.random() * Math.floor(1337))}>
                                 <input type="radio" onChange={this.handleChange} name={choice.answerText}
                                        value={choice.valid}/> {choice.answerText}
-                            </li>
+                            </button>
                         )
                     })
                     }

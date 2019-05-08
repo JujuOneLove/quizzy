@@ -1,0 +1,84 @@
+.quiz{
+  &.content{
+    position: relative;
+    &:hover{
+      opacity: 1;
+    }
+    @include media('desktop'){
+      min-height: 40vh;
+    }
+  }
+  &.single{
+    background: white;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 7px 17px 0px rgba(0,0,0,0.06);
+    -moz-box-shadow: 0px 7px 17px 0px rgba(0,0,0,0.06);
+    box-shadow: 0px 7px 17px 0px rgba(0,0,0,0.06);
+    padding: 40px;
+    top: 35%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 800px;
+    width: 75%;
+    text-align: center;
+    @include media('desktop'){
+      position: absolute;
+      width: 100%;
+      h1{
+        width: 90%;
+        display: inline-block;
+        text-align: left;
+      }
+      div{
+        text-align: left;
+      };
+    }
+    &:hover{
+      opacity: 1;
+    }
+    .current,.person{
+      float: right;
+    }
+    .score{
+      float: left;
+    }
+    .flex{
+      flex-direction: column;
+      margin-bottom: 15px;
+      > div{
+        width: 100%;
+      }
+      img{
+        display: block;
+        margin: auto;
+        max-width: 125px;
+        height: 125px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 15px;
+      }
+      @include media('desktop'){
+        flex-direction: row;
+        img{
+          max-width: 280px;
+          height: 280px;
+          margin-right: 40px;
+        }
+      }
+    }
+    button.btn{
+      position: relative;
+      margin: 0 10px;
+      font-size: 1em;
+    input{
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}
