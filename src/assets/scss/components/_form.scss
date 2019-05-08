@@ -7,7 +7,7 @@ form{
     right: 0;
     max-width: 280px;
     box-shadow: 0 -4px 30px -4px #616161;
-    padding: 25px 25px 35px;
+    padding: 25px 20px 35px;
     margin: auto;
     border-radius: 15px;
     label{
@@ -15,9 +15,9 @@ form{
     }
     input{
       display: block;
-      max-width: 265px;
+      max-width: 250px;
       width: 100%;
-      margin: 2px auto 16px 0;
+      margin: 2px auto 16px;
     }
     button{
       margin: 10px auto;

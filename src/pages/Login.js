@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import {Route} from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 import {HTTP_SERVER_PORT} from "../constants";
 import Buble from "../components/Buble";
@@ -25,9 +25,7 @@ class Login extends React.Component {
                 .then(res => {
                     if (res.data.isConnected) {
                         this.setUser(this.state.user);
-                        this.setState({
-                            authenticated: true
-                        });
+                        this.setState({authenticated: true});
                         this.checkConnexion(true);
                     }
                 })
@@ -39,15 +37,6 @@ class Login extends React.Component {
             .then(res => {
                 if (res.data.isConnected) this.login()
             });
-    };
-
-    logout() {
-        sessionStorage.clear();
-        this.setState({
-            user: null,
-            authenticated: false,
-        });
-        this.checkConnexion(false);
     };
 
     setUser() {
@@ -84,46 +73,40 @@ class Login extends React.Component {
         this.setState(user)
     }
 
-    renderForm() {
-        return (
-            <form className="connexion" onSubmit={e => this.handleForm(e)}>
-                <div>
-                    <label>Identifiant :</label>
-                    <input type="text" id="username"
-                           onChange={e => this.setUsername(e)}/>
-                </div>
-                <div>
-                    <label>Mot de passe:</label>
-                    <input type="password" name="password"
-                           onChange={e => this.setPassword(e)}/>
-                </div>
-                <div className="flex wrap">
-                    <button name="signup" onClick={() => this.signUp(this.state.user)}>S'inscrire</button>
-                    <button type="submit" name="login">Connexion</button>
-                </div>
-            </form>
-        );
-    };
-
     render() {
         if (this.state.user && this.state.authenticated) {
             return (
                 <div className="container">
                     <Buble/>
-                    <div className="content">
-                        <p>{this.state.user.username}</p>
-                        <button type="button" name="logout" className="btn btn-secondary"
-                                onClick={() => this.logout()}>logout
-                        </button>
+                    <div className="content connexion">
+                        <form className="connexion" onSubmit={e => this.handleForm(e)}>
+                            <h1>Vous êtes connecté !</h1>
+                            <Link className="btn" to="/admin">Mon compte</Link>
+                        </form>
                     </div>
                 </div>
-            )
+            );
         } else {
             return (
                 <div className="container">
                     <Buble/>
                     <div className="content connexion">
-                        {this.renderForm()}
+                        <form className="connexion" onSubmit={e => this.handleForm(e)}>
+                            <div>
+                                <label>Identifiant :</label>
+                                <input type="text" id="username"
+                                       onChange={e => this.setUsername(e)}/>
+                            </div>
+                            <div>
+                                <label>Mot de passe:</label>
+                                <input type="password" name="password"
+                                       onChange={e => this.setPassword(e)}/>
+                            </div>
+                            <div className="flex wrap">
+                                <button name="signup" onClick={() => this.signUp(this.state.user)}>S'inscrire</button>
+                                <button type="submit" name="login">Connexion</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             )
