@@ -16,7 +16,7 @@ var quizzesSchema = new mongoose.Schema({
     topScore: {
         username: String,
         score: Number,
-        dateTime: {type: Date}
+        dateTime: { type: Date }
     }
 });
 
