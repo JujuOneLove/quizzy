@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 import {HTTP_SERVER_PORT} from "../constants";
 import Buble from "../components/Buble";
@@ -87,6 +87,7 @@ class Login extends React.Component {
                     <Buble/>
                     <div className="content">
                         <p>test</p>
+                        <Link className="btn" to="/creer/quiz">Creer quizz</Link>
                         <button type="button" name="logout" className="btn btn-secondary"
                                 onClick={() => this.logout()}>logout
                         </button>
