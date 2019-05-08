@@ -18,7 +18,14 @@ class Login extends React.Component {
         };
         this.login();
     }
-
+    logout() {
+        sessionStorage.clear();
+        this.setState({
+            user: Login.getUser(),
+            authenticated: false,
+        });
+        this.checkConnexion(false);
+    };
     login() {
         if (this.state.user) {
             axios.post(HTTP_SERVER_PORT + 'login', this.state.user)
@@ -78,11 +85,11 @@ class Login extends React.Component {
             return (
                 <div className="container">
                     <Buble/>
-                    <div className="content connexion">
-                        <form className="connexion" onSubmit={e => this.handleForm(e)}>
-                            <h1>Vous êtes connecté !</h1>
-                            <Link className="btn" to="/admin">Mon compte</Link>
-                        </form>
+                    <div className="content">
+                        <p>test</p>
+                        <button type="button" name="logout" className="btn btn-secondary"
+                                onClick={() => this.logout()}>logout
+                        </button>
                     </div>
                 </div>
             );

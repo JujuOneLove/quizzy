@@ -8,7 +8,6 @@ import Error from "./pages/Error";
 import CreerQuiz from "./pages/CreerQuiz";
 import Quiz from "./pages/Quiz";
 import Login from "./pages/Login"
-import Admin from "./pages/Admin"
 
 class App extends React.Component {
 
@@ -40,10 +39,9 @@ class App extends React.Component {
                                         <Route exact={true} path='/' component={Home}/>
                                         <Route exact={true} path="/jouer/:quiz" component={Quiz}/>
                                         <Route exact={true} path='/creer/quiz' component={CreerQuiz}/>
-                                        <Route exact={true} path="/connexion"
+                                        <Route exact={true} path="/admin"
                                                render={props => <Login {...props}
                                                                        checkConnexion={b => this.checkConnexion(b)}/>}/>
-                                        <Route exact={true} path='/admin' component={Admin}/>
                                         <Route path="*" component={Error}/>
                                     </Switch>
                                 </CSSTransition>

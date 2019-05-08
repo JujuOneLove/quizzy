@@ -41,7 +41,7 @@ export default class Navbar extends Component {
                                 </div>
                             </li>
                             <li>
-                                <Link to="/connexion"><img src={user} alt="Connexion"/></Link>
+                                <Link to="/admin"><img src={user} alt="Connexion"/></Link>
                             </li>
                         </ul>
                     </div>
@@ -60,7 +60,7 @@ export default class Navbar extends Component {
                                 </div>
                             </li>
                             <li>
-                                <Link to="/connexion"><img src={user} alt="Connexion"/></Link>
+                                <Link to="/admin"><img src={user} alt="Connexion"/></Link>
                             </li>
                         </ul>
                     </div>

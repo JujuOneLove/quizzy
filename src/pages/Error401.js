@@ -10,7 +10,7 @@ export default class Error extends Component {
                 <div className="content">
                     <h1>401</h1>
                     <p>Accès Refusé... C'est un problème?</p>
-                    <Link className="btn" to="/connexion">Connectez-vous ici</Link>
+                    <Link className="btn" to="/admin">Connectez-vous ici</Link>
                 </div>
             </div>
         );
