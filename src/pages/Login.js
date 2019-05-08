@@ -14,7 +14,7 @@ class Login extends React.Component {
         }
         this.state = {
             user: Login.getUser(),
-            authenticated: null
+            authenticated: false
         };
         this.login();
     }
@@ -36,7 +36,7 @@ class Login extends React.Component {
                         this.checkConnexion(true);
                     }
                 })
-        } this.setState({authenticated: false});
+        }
     };
 
     signUp() {
@@ -81,13 +81,7 @@ class Login extends React.Component {
     }
 
     render() {
-        if (this.state.authenticated===null) {
-            return (
-                <div className="container">
-                    <Buble/>
-                </div>
-            )
-        }else if (this.state.user && this.state.authenticated) {
+        if (this.state.user && this.state.authenticated) {
             return (
                 <div className="container">
                     <Buble/>
