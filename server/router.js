@@ -73,16 +73,6 @@ router
                 })
         }
     })
-    .post('/upload',
-        (req, res) => {
-            req.files.picture.mv(__dirname + '/resources/pictures/' + req.files.picture.name,
-                (err) => {
-                    if (err)
-                        return res.status(500).send(err);
-                    res.json({ok: "ok"});
-                }
-            );
-        })
     .post("/quizzes/new", (req, res)=>{
         const quiz = req.body;
         console.log(quiz);

@@ -7,9 +7,9 @@ class Results extends Component {
         const percent = score / total * 100;
         return (
             <div className="well">
-                <h4> tu as {score} bonnes réponses sur {total} questions</h4>
+                <h2> {score}/{total} bonnes réponses</h2>
                 <hr/>
-                <h1>{percent}%</h1>
+                <h3>{percent}%</h3>
             </div>
         );
 

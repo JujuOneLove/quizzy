@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 
-import {Question, Results, CurrentScore} from "../components/quiz";
+import {Question, Results, CurrentScore, CurrentQuestion} from "../components/quiz";
+import Buble from "../components/Buble";
 
 class Quiz extends Component {
 
@@ -16,7 +17,7 @@ class Quiz extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.getQuiz(this.props.match.params.quiz);
     }
 
@@ -47,33 +48,39 @@ class Quiz extends Component {
             if (Object.keys(this.state.quiz).length > 0) {
                 const questions = this.state.quiz.questionsAndAnswers;
                 return (
-                    <div>
-                        <h3>le quiz {this.state.quiz.name} crée par {this.state.quiz.createdBy.user}</h3>
-
-                        <h4>mots clé du quiz : {this.state.quiz.keywords.map(word => <p>{word}</p>)}</h4>
-
-                        {this.state.currentQuestion > questions.length &&
-                        <Results total={questions.length} score={this.state.currentScore}/>
-                        }
-
+                    <article className="quiz single">
+                        <h1>{this.state.quiz.name}</h1>
                         {this.state.currentQuestion <= questions.length &&
-                        <CurrentScore total={questions.length} current={this.state.currentQuestion}
+                        <CurrentQuestion total={questions.length} current={this.state.currentQuestion}/>
+                        }
+                        <div className="flex">
+                            <img src={this.state.quiz.logo} alt={this.state.quiz.name}/>
+                            <div>
+                                {this.state.currentQuestion > questions.length &&
+                                <Results total={questions.length} score={this.state.currentScore}/>
+                                }
+
+                                {this.state.currentQuestion <= questions.length &&
+                                <Question question={questions[this.state.currentQuestion - 1]}
+                                          onChoiceChange={this.handleChange}/>
+                                }
+                            </div>
+                        </div>
+                        {this.state.currentQuestion <= questions.length &&
+                        <CurrentScore total={questions.length}
                                       score={this.state.currentScore}/>
                         }
-
-                        {this.state.currentQuestion <= questions.length &&
-                        <Question question={questions[this.state.currentQuestion - 1]}
-                                  onChoiceChange={this.handleChange}/>
-                        }
-                    </div>);
-            } else {
-                return <div>Pas de donnée</div>;
+                        <div className="person">crée par {this.state.quiz.createdBy.user ? this.state.quiz.createdBy.user : "un anonyme"}</div>
+                    </article>);
             }
         };
         return (
-            <div>
-                {renderQuiz()}
-            </div>
+            <section className="container">
+                <Buble/>
+                <div className="content quiz">
+                    {renderQuiz()}
+                </div>
+            </section>
         )
     }
 }
