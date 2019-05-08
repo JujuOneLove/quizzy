@@ -19,7 +19,7 @@ router
                 res.json({
                     error: "Bad request"
                 });
-            }else{
+            } else {
                 res.json(quizzes);
                 res.status(200);
             }
@@ -32,37 +32,36 @@ router
                 res.json({
                     error: "Bad request"
                 });
-            }else{
+            } else {
                 res.json(quizzes);
                 res.status(200);
             }
         });
     })
-    .post('/upload',
-        (req, res) => {
-            req.files.picture.mv(__dirname + '/resources/pictures/' + req.files.picture.name,
-                (err) => {
-                    if (err)
-                        return res.status(500).send(err);
-                    res.json({ok: "ok"});
-                }
-            );
-        })
-    .post("/quizzes/new", (req, res)=>{
+    .post("/quizzes/new", (req, res) => {
         const quiz = req.body;
+        console.log(quiz);
+        req.files.picture.mv(__dirname + '/resources/pictures/' + req.files.picture.name,
+            (err) => {
+                if (err)
+                    return res.status(500).send(err);
+            }
+        );
+
         Quizzes.create({
             name: quiz.name,
-            logo: 'images/uploads/'+req.files.picture.filename,
-            createdBy: quiz.createdBy,
-            keywords: quiz.keywords,
-            questionsAndAnswers: quiz.questionsAndAnswers
+            logo: req.files.picture.name,
+            createdBy: JSON.parse(quiz.createdBy),
+            keywords: JSON.parse(quiz.keywords),
+            questionsAndAnswers: JSON.parse(quiz.questions)
         }, function (err, quizBdd) {
             if (err) {
                 res.status(400);
+                console.log('err', err)
                 res.json({
                     error: "Bad request"
                 });
-            }else{
+            } else {
                 res.json(quizBdd);
                 res.status(200);
             }
