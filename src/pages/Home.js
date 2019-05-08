@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
 import ListQuizz from "../components/List-Quizz";
-import Login from "./Login";
-import Error from "./Error401";
-import {Link} from "react-router-dom";
-
 
 export default class Home extends Component {
     constructor(props) {
@@ -21,17 +17,12 @@ export default class Home extends Component {
         });
     }
     render() {
-        if (!this.state.quizzes) {
-            return (<p>loading data....</p>)
-        }
-        if (!Login.getUser()) {
-            return (
-                <Error/>
-            );
-        }else
+        let top = this.state.quizzes.filter(quizz => ((quizz.keywords.indexOf('top')) !== -1) )
         return (
-            <div className="App">
-                <h1>Tout nos quiz sont ici !</h1>
+            <div className="container">
+                <h2>Top quiz !</h2>
+                <ListQuizz quizzes={top}/>
+                <h2>Tout nos quiz sont ici !</h2>
                 <ListQuizz quizzes={this.state.quizzes}/>
             </div>
         );

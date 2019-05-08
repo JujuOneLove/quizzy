@@ -11,6 +11,10 @@ main{
   max-width: $containerWidth;
   margin: auto;
   padding: 0 10px;
+  .content.connexion{
+    position: relative;
+    min-height: 63.9vh;
+  }
 }
 
 ul{

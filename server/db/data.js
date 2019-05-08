@@ -57,7 +57,7 @@ var quiz2 = db.quizzes.insert({
     "name": "La Coupe du monde de football",
     "logo": "/img/coupe.jpg",
     "createdBy": user2,
-    "keywords": ["coupe du monde", "football", "soccer", "cdm"],
+    "keywords": ["coupe du monde", "football", "soccer", "cdm", "top"],
     "questionsAndAnswers": [
         {
             "question": "Avec 13 buts, Just Fontaine détient le record du plus grand nombre de buts marqués au cours d’un seul tournoi.",
