@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import Error from "./Error401";
 import Login from "./Login";
@@ -11,8 +11,12 @@ class CreerQuiz extends Component {
             name: '',
             logo: '',
             keywords: '',
-            createdBy: Login.getUser().username!==null ? Login.getUser().username : "",
-            questions: [{ question: "", point: 1, answers: [{ valid: true, answerText: "Vrai" }, { valid: false, answerText: "Faux" }] }],
+            createdBy: Login.getUser().username !== null ? Login.getUser().username : "",
+            questions: [{
+                question: "",
+                point: 1,
+                answers: [{valid: true, answerText: "Vrai"}, {valid: false, answerText: "Faux"}]
+            }],
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,7 +34,11 @@ class CreerQuiz extends Component {
 
     handleAddQuestion = () => {
         this.setState({
-            questions: this.state.questions.concat([{ question: "", point: 1, answers: [{ valid: false, answerText: "Vrai" }, { valid: false, answerText: "Faux" }] }])
+            questions: this.state.questions.concat([{
+                question: "",
+                point: 1,
+                answers: [{valid: false, answerText: "Vrai"}, {valid: false, answerText: "Faux"}]
+            }])
         });
     };
 
@@ -42,7 +50,7 @@ class CreerQuiz extends Component {
                 value.push(options[i].value);
             }
         }
-        this.setState({ keywords: value })
+        this.setState({keywords: value})
     }
 
     handleRemoveQuestion = idx => () => {
@@ -57,10 +65,10 @@ class CreerQuiz extends Component {
         const name = target.name;
         const newQuestion = this.state.questions.map((question, sidx) => {
             if (idx !== sidx) return question;
-            return { ...question, [name]: value };
+            return {...question, [name]: value};
         });
 
-        this.setState({ questions: newQuestion });
+        this.setState({questions: newQuestion});
 
         console.log('ttt', this.state)
     };
@@ -75,10 +83,10 @@ class CreerQuiz extends Component {
 
         const newQuestions = this.state.questions.map((question, sidx) => {
             if (idx !== sidx) return question;
-            return { ...question, answers: answersQ };
+            return {...question, answers: answersQ};
         });
 
-        this.setState({ questions: newQuestions });
+        this.setState({questions: newQuestions});
 
         console.log('handlecheckbox', this.state);
     }
@@ -96,7 +104,8 @@ class CreerQuiz extends Component {
         axios.post('http://localhost:8081/quizzes/new', fd).then(
             res => console.log('then', res));
 
-        console.log('state', this.state)
+        console.log('state', this.state);
+        this.props.history.push('/');
 
     };
 
@@ -110,64 +119,64 @@ class CreerQuiz extends Component {
                 <Buble/>
 
                 <form className="block" encType="multipart/form-data" onSubmit={this.handleSubmit}>
-                <label>
-                    Nom
-                    <input
-                        name="name"
-                        type="test"
-                        value={this.state.name}
-                        onChange={this.handleInputChange}
-                    required/>
-                </label>
-                <br />
-                <label>
-                    Logo:
-                    <input id="picture1" type="file" name="file1" required/>
-                </label>
-                <br />
-                <label>
-                    Mots clés:
-                    <select name="keyword" value={this.state.value} onChange={this.handleOnChangeKeywords} multiple>
-                        <option value="top">Top</option>
-                        <option value="sport">Sport</option>
-                        <option value="fun">Fun</option>
-                        <option value="dance">Dance</option>
-                        <option value="jeux">Jeux</option>
-                        <option value="football">Football</option>
-                    </select>
-                </label>
-                <br />
+                    <label>
+                        Nom
+                        <input
+                            name="name"
+                            type="test"
+                            value={this.state.name}
+                            onChange={this.handleInputChange}
+                            required/>
+                    </label>
+                    <br/>
+                    <label>
+                        Logo:
+                        <input id="picture1" type="file" name="file1" required/>
+                    </label>
+                    <br/>
+                    <label>
+                        Mots clés:
+                        <select name="keyword" value={this.state.value} onChange={this.handleOnChangeKeywords} multiple>
+                            <option value="top">Top</option>
+                            <option value="sport">Sport</option>
+                            <option value="fun">Fun</option>
+                            <option value="dance">Dance</option>
+                            <option value="jeux">Jeux</option>
+                            <option value="football">Football</option>
+                        </select>
+                    </label>
+                    <br/>
 
-                {this.state.questions.map((question, idx) => (
-                    <div key={`div-${idx}`}>
-                        <label>
-                            Question
-                            <input
-                                key={`question-${idx}`}
-                                type="text"
-                                placeholder={`question`}
-                                name="question"
-                                value={question.question}
-                                onChange={this.handleOnChangeQuestion(idx)}
-                                required
-                            />
-                        </label>
-                        <label>
-                            NB de point
-                            <input
-                                key={`point-${idx}`}
-                                type="number"
-                                placeholder={`point`}
-                                name="point"
-                                value={question.point}
-                                onChange={this.handleOnChangeQuestion(idx)}
+                    {this.state.questions.map((question, idx) => (
+                        <div key={`div-${idx}`}>
+                            <label>
+                                Question
+                                <input
+                                    key={`question-${idx}`}
+                                    type="text"
+                                    placeholder={`question`}
+                                    name="question"
+                                    value={question.question}
+                                    onChange={this.handleOnChangeQuestion(idx)}
+                                    required
+                                />
+                            </label>
+                            <label>
+                                NB de point
+                                <input
+                                    key={`point-${idx}`}
+                                    type="number"
+                                    placeholder={`point`}
+                                    name="point"
+                                    value={question.point}
+                                    onChange={this.handleOnChangeQuestion(idx)}
 
-                            />
-                        </label>
+                                />
+                            </label>
 
-                        <label>
-                            Réponse:
-                            <div className="flex wrap">
+                            <label>
+                                Réponse:
+                                <div className="flex wrap">
                                 <span className="btn">
                                     <input
                                         type="radio"
@@ -177,7 +186,7 @@ class CreerQuiz extends Component {
                                         checked={question.answers[0].valid}
                                     /> <span>{question.answers[0].answerText}</span>
                                 </span>
-                                <span className="btn">
+                                    <span className="btn">
                                     <input
                                         type="radio"
                                         value={question.answers[1].answerText}
@@ -186,31 +195,31 @@ class CreerQuiz extends Component {
                                         checked={question.answers[1].valid}
                                     /> <span>{question.answers[1].answerText}</span>
                                 </span>
-                            </div>
-                        </label>
-                        <div className="flex wrap">
+                                </div>
+                            </label>
+                            <div className="flex wrap">
 
+                                <button
+                                    type="button"
+                                    onClick={this.handleRemoveQuestion(idx)}
+                                >
+                                    Supprimmer
+                                </button>
+                            </div>
+                            <hr/>
+                        </div>
+                    ))}
+                    <div className="flex wrap">
                         <button
                             type="button"
-                            onClick={this.handleRemoveQuestion(idx)}
+                            onClick={this.handleAddQuestion}
                         >
-                            Supprimmer
+                            Add Question
                         </button>
-                        </div>
-                        <hr />
-                    </div>
-                ))}
-                <div className="flex wrap">
-                    <button
-                        type="button"
-                        onClick={this.handleAddQuestion}
-                    >
-                        Add Question
-                    </button>
 
-                    <button type="submit">Créer</button>
-                </div>
-            </form>
+                        <button type="submit">Créer</button>
+                    </div>
+                </form>
             </div>
         );
     }
