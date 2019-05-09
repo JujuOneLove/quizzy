@@ -17,7 +17,7 @@ const USER = {
 const QUIZ = {
     "name": "La France",
     "logo": "",
-    "createdBy": USER,
+    "createdBy": "",
     "keywords": ["pays", "france"],
     "questionsAndAnswers": [
         {
