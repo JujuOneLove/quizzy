@@ -20,10 +20,10 @@ class Question extends Component {
                 <ul>
                     {question.answers.map((choice) => {
                         return (
-                            <button className="btn" key={Math.floor(Math.random() * Math.floor(1337))}>
+                            <span className="btn" key={Math.floor(Math.random() * Math.floor(1337))}>
                                 <input type="radio" onChange={this.handleChange} name={choice.answerText}
                                        value={choice.valid}/> {choice.answerText}
-                            </button>
+                            </span>
                         )
                     })
                     }

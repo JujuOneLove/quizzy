@@ -86,7 +86,7 @@ class Login extends React.Component {
                 <div className="container">
                     <Buble/>
                     <div className="content">
-                        <p>test</p>
+                        <p>{this.state.user.username}</p>
                         <Link className="btn" to="/creer/quiz">Creer quizz</Link>
                         <button type="button" name="logout" className="btn btn-secondary"
                                 onClick={() => this.logout()}>logout
