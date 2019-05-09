@@ -76,7 +76,7 @@ router
     .post("/quizzes/new", (req, res)=>{
         const quiz = req.body;
         console.log(quiz);
-        req.files.picture.mv(__dirname + '/resources/pictures/' + req.files.picture.name,
+        req.files.picture.mv(__dirname + '/../public/img/' + req.files.picture.name,
             (err) => {
                 if (err)
                     return res.status(500).send(err);
@@ -85,7 +85,7 @@ router
 
         Quizzes.create({
             name: quiz.name,
-            logo: req.files.picture.name,
+            logo: '/img/' + req.files.picture.name,
             createdBy: JSON.parse(quiz.createdBy),
             keywords: JSON.parse(quiz.keywords),
             questionsAndAnswers: JSON.parse(quiz.questions)

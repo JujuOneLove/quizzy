@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var quizzesSchema = new mongoose.Schema({
     name: String,
     logo: String,
-    createdBy: {},
+    createdBy: {name : ""},
     keywords: [String],
     questionsAndAnswers: [{
         question: String,
