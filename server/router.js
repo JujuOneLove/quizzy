@@ -92,7 +92,7 @@ router
         }, function (err, quizBdd) {
             if (err) {
                 res.status(400);
-                console.log('err', err)
+                console.log('err', err);
                 res.json({
                     error: "Bad request"
                 });

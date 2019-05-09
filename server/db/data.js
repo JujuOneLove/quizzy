@@ -1,25 +1,26 @@
 //use exple1
+
 db.users.remove({});
 db.quizzes.remove({});
 db.users.insert(
     {
         "name": "admin",
-        "password": "admin"
+        "password": "21232f297a57a5a743894a0e4a801fc3"
     });
 db.users.insert(
     {
         "name": "antho",
-        "password": "antho"
+        "password": "741e5e41df8afd89749c9b5780de9f68"
     });
 db.users.insert(
     {
         "name": "flo",
-        "password": "flo"
+        "password": "7e1e91156f7c4e1bd0831cf008ad5fdf"
     });
 db.users.insert(
     {
         "name": "jul",
-        "password": "jul"
+        "password": "f05c8652de134d5c50729fa1b31d355b"
     });
 var user2 = db.users.findOne({ "name": "antho" });
 
