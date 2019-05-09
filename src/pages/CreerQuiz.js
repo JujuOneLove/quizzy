@@ -11,7 +11,7 @@ class CreerQuiz extends Component {
             name: '',
             logo: '',
             keywords: '',
-            createdBy: {},
+            createdBy: Login.getUser().username!==null ? Login.getUser().username : "",
             questions: [{ question: "", point: 1, answers: [{ valid: true, answerText: "Vrai" }, { valid: false, answerText: "Faux" }] }],
         };
 
