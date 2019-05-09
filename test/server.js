@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var Quiz = require("../server/db/schemaQuizzes");
 var should = chai.should();
 
+
 chai.use(chaiHttp);
 
 const USER = {
@@ -68,7 +69,6 @@ describe('Quizzes', function () {
         });
     });
 
-
     it('should list a SINGLE quiz on /quizzes/<id> GET', function (done) {
         var newQuiz = new Quiz(QUIZ);
         newQuiz.save(function (err, data) {
@@ -85,6 +85,22 @@ describe('Quizzes', function () {
             });
         });
     });
+
+    it('should login the user on /login', function(done) {
+        chai.request(server)
+            .post('/login')
+            .send({'username': 'antho', 'password': 'antho'})
+            .end(function(err, res){
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('object');
+                res.body.should.have.property('isConnected');
+                res.body.isConnected.should.equal(true);
+                done();
+            });
+    });
+
+
 });
 
 // git des test qu'on a fait en cours
