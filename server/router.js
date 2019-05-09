@@ -40,6 +40,18 @@ router
             }
         });
     })
+    .post("/savescore",(req, res) => {
+        console.log(req.body);
+        Users.updateOne({name:req.body.user.username, password: md5(req.body.user.password)}, { $push:{scores:{score:req.body.score,quizId: req.body.quiz}}}, function (err) {
+            if(err)
+                res.status(400);
+        });
+        Quizzes.updateOne({_id:req.body.quiz._id},{$push:{topScore:{score:req.body.score, name:req.body.user.username}}}, function (err) {
+            if(err)
+                res.status(400);
+        });
+        res.status(200);
+    })
     .post("/login", (req, res) => {
         if (!req.body.username || !req.body.password) {
             res.json({isConnected: false})
@@ -76,7 +88,7 @@ router
     .post("/quizzes/new", (req, res)=>{
         const quiz = req.body;
         console.log(quiz);
-        req.files.picture.mv(__dirname + '/resources/pictures/' + req.files.picture.name,
+        req.files.picture.mv(__dirname + '../public/img' + req.files.picture.name,
             (err) => {
                 if (err)
                     return res.status(500).send(err);

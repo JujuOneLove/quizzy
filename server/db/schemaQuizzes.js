@@ -14,9 +14,8 @@ var quizzesSchema = new mongoose.Schema({
         }]
     }],
     topScore: {
-        username: String,
-        score: Number,
-        dateTime: { type: Date }
+        name: String,
+        score: Number
     }
 });
 

@@ -9,7 +9,7 @@ db.users.insert(
 db.users.insert(
     {
         "name": "antho",
-        "password": "antho"
+        "password": "741e5e41df8afd89749c9b5780de9f68"
     });
 db.users.insert(
     {
