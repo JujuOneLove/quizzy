@@ -8,9 +8,7 @@ var usersSchema = new mongoose.Schema({
     createdQuizzes: [{}],
     scores: [{
         quizId: {},
-        username: String,
-        score: Number,
-        dateTime: {type: Date, default: Date.now}
+        score: Number
     }]
 }, { versionKey: false });
 

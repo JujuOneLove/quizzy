@@ -4,6 +4,7 @@ class Results extends Component {
     render() {
         const score = this.props.score;
         const total = this.props.total;
+        this.props.saveScore();
         const percent = score / total * 100;
         return (
             <div className="well">

@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import {Question, Results, CurrentScore, CurrentQuestion} from "../components/quiz";
 import Buble from "../components/Buble";
+import Login from "./Login";
 import {Link} from "react-router-dom";
 
 class Quiz extends Component {
@@ -20,6 +21,7 @@ class Quiz extends Component {
 
     async componentDidMount() {
         this.getQuiz(this.props.match.params.quiz);
+
     }
 
     async getQuiz(id) {
@@ -31,6 +33,12 @@ class Quiz extends Component {
                 console.log(error);
             });
     };
+
+    async saveScore(){
+        let user=Login.getUser();
+        if (user!==null)
+            await axios.post('http://localhost:8081/savescore',{user: user, score:this.state.currentScore,quiz:this.state.quiz})
+    }
 
     handleChange(choice) {
         let currPoints = this.state.quiz.questionsAndAnswers[this.state.currentQuestion - 1].point;
@@ -58,7 +66,7 @@ class Quiz extends Component {
                             <img src={this.state.quiz.logo} alt={this.state.quiz.name}/>
                             <div>
                                 {this.state.currentQuestion > questions.length &&
-                                <Results total={questions.length} score={this.state.currentScore}/>
+                                <Results total={questions.length} score={this.state.currentScore} saveScore={()=>this.saveScore()}/>
                                 }
 
                                 {this.state.currentQuestion <= questions.length &&

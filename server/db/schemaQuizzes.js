@@ -13,10 +13,10 @@ var quizzesSchema = new mongoose.Schema({
             answerText: String
         }]
     }],
-    topScore: [{
-        username: String,
-        score: Number,
-        dateTime: { type: Date }}]
+    topScore: {
+        name: String,
+        score: Number
+    }
 });
 
 module.exports = mongoose.model('quizzes', quizzesSchema);
