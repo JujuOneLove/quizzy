@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import {Question, Results, CurrentScore, CurrentQuestion} from "../components/quiz";
 import Buble from "../components/Buble";
+import {Link} from "react-router-dom";
 
 class Quiz extends Component {
 
@@ -66,11 +67,9 @@ class Quiz extends Component {
                                 }
                             </div>
                         </div>
-                        {this.state.currentQuestion <= questions.length &&
                         <CurrentScore total={questions.length}
                                       score={this.state.currentScore}/>
-                        }
-                        <div className="person">crée par {this.state.quiz.createdBy ? this.state.quiz.createdBy : "un anonyme"}</div>
+                        <div className="person">crée par {this.state.quiz.createdBy ? <Link to={"/user/"+this.state.quiz.createdBy}>{this.state.quiz.createdBy}</Link> : "un anonyme"}</div>
                     </article>);
             }
         };
