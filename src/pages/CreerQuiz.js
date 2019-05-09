@@ -93,11 +93,11 @@ class CreerQuiz extends Component {
         fd.append('createdBy', JSON.stringify(this.state.createdBy));
         fd.append('questions', JSON.stringify(this.state.questions));
 
-        axios.post('http://localhost:8081/quizzes/new', fd).then(
+        axios.post('http://localhost:8081/auth/quizzes/new', fd,  {headers: Login.getUser()}).then(
             res => console.log('then', res));
 
         console.log('state', this.state);
-        this.props.history.push('/');
+        //this.props.history.push('/');
 
     };
 
