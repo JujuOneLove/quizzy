@@ -4,6 +4,7 @@ import { Route, Link } from 'react-router-dom';
 
 import {HTTP_SERVER_PORT} from "../constants";
 import Buble from "../components/Buble";
+import ListQuizz from "../components/List-Quizz";
 
 class Login extends React.Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class Login extends React.Component {
         }
         this.state = {
             user: Login.getUser(),
-            authenticated: false
+            authenticated: false,
+            quizzes: [],
         };
         this.login();
     }
@@ -26,6 +28,12 @@ class Login extends React.Component {
         });
         this.checkConnexion(false);
     };
+    async getQuizzes() {
+        const quizzes = (await axios.get('http://localhost:8081/quizzes/user/'+this.state.user.username));
+        this.setState({
+            quizzes: quizzes
+        });
+    }
     login() {
         if (this.state.user) {
             axios.post(HTTP_SERVER_PORT + 'login', this.state.user)
@@ -36,6 +44,7 @@ class Login extends React.Component {
                         this.checkConnexion(true);
                     }
                 })
+            this.getQuizzes();
         }
     };
 
@@ -83,14 +92,18 @@ class Login extends React.Component {
     render() {
         if (this.state.user && this.state.authenticated) {
             return (
-                <div className="container">
-                    <Buble/>
+                <div className="container admin">
                     <div className="content">
-                        <p>{this.state.user.username}</p>
-                        <Link className="btn" to="/creer/quiz">Creer quizz</Link>
-                        <button type="button" name="logout" className="btn btn-secondary"
-                                onClick={() => this.logout()}>logout
-                        </button>
+                        <div className="header">
+                            <h1>{this.state.user.username}</h1>
+                            <button type="button" name="logout" className="btn btn-secondary"
+                                    onClick={() => this.logout()}>logout
+                            </button>
+                        </div>
+                        <ListQuizz quizzes={this.state.quizzes.data}/>
+                        <div className="creer">
+                            <Link className="btn" to="/creer/quiz">Creer quizz</Link>
+                        </div>
                     </div>
                 </div>
             );

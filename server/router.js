@@ -40,6 +40,19 @@ router
             }
         });
     })
+    .get("/quizzes/user/:user", (req, res) => {
+        Quizzes.find({ createdBy:req.params.user}, function (err, quizzes) {
+            if (err) {
+                res.status(400);
+                res.json({
+                    error: "Bad request"
+                });
+            } else {
+                res.json(quizzes);
+                res.status(200);
+            }
+        });
+    })
     .post("/login", (req, res) => {
         if (!req.body.username || !req.body.password) {
             res.json({isConnected: false})

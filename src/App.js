@@ -8,6 +8,7 @@ import Error from "./pages/Error";
 import CreerQuiz from "./pages/CreerQuiz";
 import Quiz from "./pages/Quiz";
 import Login from "./pages/Login"
+import QuizUser from "./pages/QuizUser";
 
 class App extends React.Component {
 
@@ -37,6 +38,7 @@ class App extends React.Component {
                                 >
                                     <Switch location={location}>
                                         <Route exact={true} path='/' component={Home}/>
+                                        <Route exact={true} path="/user/:user" component={QuizUser}/>
                                         <Route exact={true} path="/jouer/:quiz" component={Quiz}/>
                                         <Route exact={true} path='/creer/quiz' component={CreerQuiz}/>
                                         <Route exact={true} path="/admin"
