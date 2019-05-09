@@ -1,0 +1,104 @@
+.quiz{
+  &.content{
+    position: relative;
+    &:hover{
+      opacity: 1;
+    }
+    @include media('desktop'){
+      min-height: 40vh;
+    }
+  }
+  &.single{
+    background: white;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 7px 17px 0px rgba(0,0,0,0.06);
+    -moz-box-shadow: 0px 7px 17px 0px rgba(0,0,0,0.06);
+    box-shadow: 0px 7px 17px 0px rgba(0,0,0,0.06);
+    padding: 40px;
+    top: 35%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 800px;
+    width: 75%;
+    text-align: center;
+    @include media('desktop'){
+      top: 125px;
+      position: relative;
+      width: 100%;
+      margin-bottom: 125px;
+      h1{
+        width: 90%;
+        display: inline-block;
+        text-align: left;
+      }
+      div{
+        text-align: left;
+      };
+    }
+    &:hover{
+      opacity: 1;
+    }
+    .current,.person{
+      float: right;
+    }
+    .score{
+      float: left;
+    }
+    ul.flex{
+      flex-direction: row;
+      .btn{
+        margin: auto;
+        @include media('desktop'){
+          margin: 0 10px;
+        }
+      }
+    }
+    .flex{
+      flex-direction: column;
+      margin-bottom: 15px;
+      > div{
+        width: 100%;
+      }
+      img{
+        display: block;
+        margin: auto;
+        max-width: 125px;
+        height: 125px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 15px;
+      }
+      @include media('desktop'){
+        flex-direction: row;
+        img{
+          max-width: 280px;
+          height: 280px;
+          margin-right: 40px;
+        }
+      }
+      .image{
+        position: relative;
+        input{
+          opacity: 0;
+          width: 125px;
+          height: 125px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          cursor: pointer;
+          z-index: 2;
+        }
+        img{
+          cursor: pointer;
+          z-index: 1;
+          margin: 10px 20px;
+          @include media('desktop'){
+              max-width: 125px;
+              height: 125px;
+          }
+        }
+      }
+    }
+  }
+}

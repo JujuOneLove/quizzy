@@ -1,0 +1,30 @@
+.btn,button{
+  border-radius: 25px;
+  border-width: 0;
+  padding: .625rem 1.125rem;
+  background: linear-gradient(#EC5DC1,$violet);
+  color: white;
+  text-decoration: none;
+  transition: .5s;
+  cursor: pointer;
+  outline: none;
+  &:hover{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+span.btn{
+  position: relative;
+  margin: 0 10px;
+  font-size: 1em;
+  input{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+}

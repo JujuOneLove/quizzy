@@ -1,0 +1,34 @@
+html, body, *{
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  line-height: normal;
+}
+
+h1{
+  font-size: 1.8em;;
+  margin: 0 0 30px;
+  color: $black;
+}
+
+h2{
+  color: $black;
+  font-size: 1.7em;
+}
+
+h3{
+  color: $black;
+  font-size: 1.2em;
+}
+a{
+  &:focus{
+    outline: none;
+  }
+
+  color: $violet;
+  text-decoration: none;
+}

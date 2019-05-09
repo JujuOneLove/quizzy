@@ -1,0 +1,22 @@
+.admin{
+  &.container{
+    button,.btn{
+      font-size: 0.8em;
+    }
+    div.header{
+      button,.btn{
+        float: right;
+      }
+    }
+    .creer{
+      margin-top: 15px;
+      text-align: center;
+    }
+    @include media('desktop'){
+      h1{
+        display: inline-block;
+        width: 90%;
+      }
+    }
+  }
+}

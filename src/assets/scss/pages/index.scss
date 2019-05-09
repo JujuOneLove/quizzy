@@ -1,0 +1,30 @@
+body{
+  margin: 0;
+}
+main{
+  margin-top: 100px;
+  @include media('desktop'){
+    min-height: 63.9vh;
+  }
+}
+.container{
+  max-width: $containerWidth;
+  margin: auto;
+  padding: 0 10px;
+  .content.connexion{
+    position: relative;
+    min-height: 63.9vh;
+  }
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+}
+
+.flex{
+  display: flex;
+  &.wrap{
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,23 @@
+// Import variables & minxins
+@import "helpers/variables";
+@import "helpers/mixins";
+// Common
+@import "common/typo";
+
+// Components
+@import "components/header";
+@import "components/nav";
+@import "components/footer";
+@import "components/form";
+@import "components/button";
+@import "components/quiz";
+@import "components/list-quiz";
+@import "components/buble";
+// Pages
+@import "pages/index";
+@import "pages/error";
+@import "pages/quizz";
+@import "pages/admin";
+
+//Transition
+@import "common/transition";

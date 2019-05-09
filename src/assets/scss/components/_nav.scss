@@ -1,0 +1,119 @@
+.nav {
+  box-shadow: 0 -4px 30px -4px $black-light;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  height: 70px;
+  background: white;
+  a{
+    display: inline-block;
+  }
+  .container{
+    display: flex;
+    .logo{
+      margin-right: auto;
+      width: 150px;
+      height: 70px;
+    }
+    ul{
+      margin-left: auto;
+      display: flex;
+      li{
+        img{
+          margin: 4px 6px 0;
+          height: 26px;
+          width: 20px;
+          object-fit: cover;
+        }
+        .search{
+          input{
+            margin-right: 20px;
+            width: 215px;
+            display: block;
+            @include media('mobile'){
+              display: none;
+            }
+          }
+          display: flex;
+          button{
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            outline: none;
+            width: auto;
+            display: none;
+            margin-top: 5px;
+            @include media('mobile'){
+              display: block;
+            }
+            img{
+              height: 20px;
+              object-fit: cover;
+              width: 20px;
+            }
+          }
+          #filtre{
+            display: none;
+            @include media('mobile'){
+              &.mobile{
+                display: block;
+              }
+              input{
+                display: block;
+                width: 85%;
+                margin: auto;
+              }
+            }
+            &.active{
+              display: block;
+            }
+          }
+          .filter{
+            position: fixed;
+            width: 100%;
+            left: 0;
+            right: 0;
+            top: 75px;
+            margin: auto;
+            padding: 0;
+            ul{ background: white;
+              display: flex;
+              width: 280px;
+              text-align: center;
+              flex-direction: column;
+              box-shadow: 0 -4px 30px -4px $black-light;
+              margin-right: 30px;
+              @include media('mobile'){
+                margin: 0;
+                width: 100%;
+              }
+              li{
+                padding: 10px;
+                border-bottom: 1px solid $black-light;
+                &:first-child{
+                  display: none;
+                  @include media('mobile'){
+                    display: block;
+                  }
+                }
+                &:last-child{
+                  border: none;
+                }
+                a{
+                  color: $black-light;
+                }
+                &:hover{
+                  a{
+                    color: $violet;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
