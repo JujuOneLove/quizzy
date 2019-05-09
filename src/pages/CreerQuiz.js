@@ -12,7 +12,7 @@ class CreerQuiz extends Component {
             logo: '',
             keywords: '',
             createdBy: Login.getUser().username!==null ? Login.getUser().username : "",
-            questions: [{ question: "", point: 1, answers: [{ valid: true, answerText: "Vrai" }, { valid: false, answerText: "Faux" }] }],
+            questions: [{ question: "", point: 1, answers: [{ valid: true, answerText: "Vrai","image": false }, { valid: false, answerText: "Faux","image": false }] }],
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,7 +30,7 @@ class CreerQuiz extends Component {
 
     handleAddQuestion = () => {
         this.setState({
-            questions: this.state.questions.concat([{ question: "", point: 1, answers: [{ valid: false, answerText: "Vrai" }, { valid: false, answerText: "Faux" }] }])
+            questions: this.state.questions.concat([{ question: "", point: 1, answers: [{ valid: false, answerText: "Vrai","image": false }, { valid: false, answerText: "Faux","image": false }] }])
         });
     };
 
@@ -205,7 +205,7 @@ class CreerQuiz extends Component {
                         type="button"
                         onClick={this.handleAddQuestion}
                     >
-                        Add Question
+                        Ajouter une question
                     </button>
 
                     <button type="submit">Créer</button>
