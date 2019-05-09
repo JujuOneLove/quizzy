@@ -10,6 +10,9 @@ form{
     padding: 25px 20px 35px;
     margin: auto;
     border-radius: 15px;
+    @media (max-height: 600px){
+      top: 10%;
+    }
     label{
       color: $black;
     }

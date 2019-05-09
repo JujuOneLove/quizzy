@@ -21,9 +21,9 @@ class Question extends Component {
                     {question.answers.map((choice) => {
                         if(choice.image === true){
                             return (
-                                <span className="image">
+                                <span className="image" key={Math.floor(Math.random() * Math.floor(1337))}>
                                     <input type="radio" onChange={this.handleChange} name={choice.answerText}
-                                           value={choice.valid}/><img key={Math.floor(Math.random() * Math.floor(1337))} src={choice.answerText} alt="reponse"/>
+                                           value={choice.valid}/><img  src={choice.answerText} alt="reponse"/>
                                 </span>)
                         } else return (
                             <span className="btn" key={Math.floor(Math.random() * Math.floor(1337))}>

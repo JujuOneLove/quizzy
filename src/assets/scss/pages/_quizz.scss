@@ -23,8 +23,10 @@
     width: 75%;
     text-align: center;
     @include media('desktop'){
-      position: absolute;
+      top: 125px;
+      position: relative;
       width: 100%;
+      margin-bottom: 125px;
       h1{
         width: 90%;
         display: inline-block;
