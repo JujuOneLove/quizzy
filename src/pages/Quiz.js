@@ -66,10 +66,8 @@ class Quiz extends Component {
                                 }
                             </div>
                         </div>
-                        {this.state.currentQuestion <= questions.length &&
                         <CurrentScore total={questions.length}
                                       score={this.state.currentScore}/>
-                        }
                         <div className="person">crée par {this.state.quiz.createdBy ? this.state.quiz.createdBy : "un anonyme"}</div>
                     </article>);
             }
