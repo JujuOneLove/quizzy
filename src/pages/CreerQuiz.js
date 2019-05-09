@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Error from "./Error401";
 import Login from "./Login";
+import Buble from "../components/Buble";
 
 class CreerQuiz extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: 'demo',
+            name: '',
             logo: '',
             keywords: '',
             createdBy: {},
-            questions: [{ question: "quest1", point: 1, answers: [{ valid: true, answerText: "Vrai" }, { valid: false, answerText: "Faux" }] }],
+            questions: [{ question: "", point: 1, answers: [{ valid: true, answerText: "Vrai" }, { valid: false, answerText: "Faux" }] }],
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -105,28 +106,34 @@ class CreerQuiz extends Component {
                 <Error/>
             );
         } else return (
-            <form encType="multipart/form-data" onSubmit={this.handleSubmit}>
+            <div className="create container">
+                <Buble/>
+
+                <form className="block" encType="multipart/form-data" onSubmit={this.handleSubmit}>
                 <label>
-                    Name
+                    Nom
                     <input
                         name="name"
                         type="test"
                         value={this.state.name}
-                        onChange={this.handleInputChange} />
+                        onChange={this.handleInputChange}
+                    required/>
                 </label>
                 <br />
                 <label>
-                    logo:
-                    <input id="picture1" type="file" name="file1" />
+                    Logo:
+                    <input id="picture1" type="file" name="file1" required/>
                 </label>
                 <br />
                 <label>
-                    keyword:
+                    Mots clés:
                     <select name="keyword" value={this.state.value} onChange={this.handleOnChangeKeywords} multiple>
-                        <option value="grapefruit">Grapefruit</option>
-                        <option value="lime">Lime</option>
-                        <option value="coconut">Coconut</option>
-                        <option value="mango">Mango</option>
+                        <option value="top">Top</option>
+                        <option value="sport">Sport</option>
+                        <option value="fun">Fun</option>
+                        <option value="dance">Dance</option>
+                        <option value="jeux">Jeux</option>
+                        <option value="football">Football</option>
                     </select>
                 </label>
                 <br />
@@ -142,6 +149,7 @@ class CreerQuiz extends Component {
                                 name="question"
                                 value={question.question}
                                 onChange={this.handleOnChangeQuestion(idx)}
+                                required
                             />
                         </label>
                         <label>
@@ -159,42 +167,51 @@ class CreerQuiz extends Component {
 
                         <label>
                             Réponse:
-                            <input
-                                type="radio"
-                                value={question.answers[0].answerText}
-                                onChange={this.handleOnAnswersCheckboxChange(idx)}
-                                key={`question-${idx}-true`}
-                                checked={question.answers[0].valid}
-                            /> {question.answers[0].answerText}
-
-                            <input
-                                type="radio"
-                                value={question.answers[1].answerText}
-                                onChange={this.handleOnAnswersCheckboxChange(idx)}
-                                key={`question-${idx}-false`}
-                                checked={question.answers[1].valid}
-                            /> {question.answers[1].answerText}
+                            <div className="flex wrap">
+                                <span className="btn">
+                                    <input
+                                        type="radio"
+                                        value={question.answers[0].answerText}
+                                        onChange={this.handleOnAnswersCheckboxChange(idx)}
+                                        key={`question-${idx}-true`}
+                                        checked={question.answers[0].valid}
+                                    /> <span>{question.answers[0].answerText}</span>
+                                </span>
+                                <span className="btn">
+                                    <input
+                                        type="radio"
+                                        value={question.answers[1].answerText}
+                                        onChange={this.handleOnAnswersCheckboxChange(idx)}
+                                        key={`question-${idx}-false`}
+                                        checked={question.answers[1].valid}
+                                    /> <span>{question.answers[1].answerText}</span>
+                                </span>
+                            </div>
                         </label>
-                        <br />
+                        <div className="flex wrap">
+
                         <button
                             type="button"
                             onClick={this.handleRemoveQuestion(idx)}
                         >
-                            SUPPRIMER
+                            Supprimmer
                         </button>
+                        </div>
                         <hr />
                     </div>
                 ))}
-                <button
-                    type="button"
-                    onClick={this.handleAddQuestion}
-                >
-                    Add Question
-                </button>
+                <div className="flex wrap">
+                    <button
+                        type="button"
+                        onClick={this.handleAddQuestion}
+                    >
+                        Add Question
+                    </button>
 
-                <button type="submit">Créer</button>
+                    <button type="submit">Créer</button>
+                </div>
             </form>
-
+            </div>
         );
     }
 }

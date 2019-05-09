@@ -1,5 +1,5 @@
 form{
-  &.connexion{
+  &.connexion,&.block{
     background: white;
     position: absolute;
     top: 35%;
@@ -13,7 +13,7 @@ form{
     label{
       color: $black;
     }
-    input{
+    input,select{
       display: block;
       max-width: 250px;
       width: 100%;
@@ -23,6 +23,39 @@ form{
       margin: 10px auto;
       font-size: 0.8em;
     }
+  }
+  &.block{
+    position: relative;
+    input{
+      margin: 0;
+    }
+    select{
+      height: 200px;
+      margin: 0;
+      width: 100%;
+      max-width: 264px;
+      border-style: inset;
+      border-width: 2px;
+      border-image: initial;
+      option{
+        line-height: 37px;
+        height: 37px;
+        margin-top: 6px;
+        outline: none;
+      }
+    }
+    span.btn{
+      margin: 10px auto 0;
+      input{
+        transition: 0.4s;
+        &:checked{
+          +span{
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  ;
   }
 }
 
