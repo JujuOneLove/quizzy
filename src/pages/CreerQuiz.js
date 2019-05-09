@@ -153,7 +153,7 @@ class CreerQuiz extends Component {
                             />
                         </label>
                         <label>
-                            NB de point
+                            Nombre de point
                             <input
                                 key={`point-${idx}`}
                                 type="number"
