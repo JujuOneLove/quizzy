@@ -43,6 +43,15 @@
     .score{
       float: left;
     }
+    ul.flex{
+      flex-direction: row;
+      .btn{
+        margin: auto;
+        @include media('desktop'){
+          margin: 0 10px;
+        }
+      }
+    }
     .flex{
       flex-direction: column;
       margin-bottom: 15px;
@@ -64,6 +73,28 @@
           max-width: 280px;
           height: 280px;
           margin-right: 40px;
+        }
+      }
+      .image{
+        position: relative;
+        input{
+          opacity: 0;
+          width: 125px;
+          height: 125px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          cursor: pointer;
+          z-index: 2;
+        }
+        img{
+          cursor: pointer;
+          z-index: 1;
+          margin: 10px 20px;
+          @include media('desktop'){
+              max-width: 125px;
+              height: 125px;
+          }
         }
       }
     }

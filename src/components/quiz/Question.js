@@ -17,9 +17,15 @@ class Question extends Component {
         return (
             <div>
                 <h3>{question.question}</h3>
-                <ul>
+                <ul className="flex wrap">
                     {question.answers.map((choice) => {
-                        return (
+                        if(choice.image === true){
+                            return (
+                                <span className="image">
+                                    <input type="radio" onChange={this.handleChange} name={choice.answerText}
+                                           value={choice.valid}/><img key={Math.floor(Math.random() * Math.floor(1337))} src={choice.answerText} alt="reponse"/>
+                                </span>)
+                        } else return (
                             <span className="btn" key={Math.floor(Math.random() * Math.floor(1337))}>
                                 <input type="radio" onChange={this.handleChange} name={choice.answerText}
                                        value={choice.valid}/> {choice.answerText}
