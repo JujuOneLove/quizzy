@@ -33,10 +33,10 @@ class CreerQuiz extends Component {
             questions: [{
                 question: "",
                 point: 1,
-                answers: [{valid: true, answerText: "Vrai", "image": false}, {
+                image: false,
+                answers: [{valid: true, answerText: "Vrai"}, {
                     valid: false,
-                    answerText: "Faux",
-                    "image": false
+                    answerText: "Faux"
                 }]
             }],
         };
@@ -53,16 +53,32 @@ class CreerQuiz extends Component {
             [name]: value
         });
     }
+    handleSelectImage = idx => event => {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        let image;
+        if (value === 'image'){
+            image = true;
+        }else image = false;
+        const newQuestion = this.state.questions.map((question, sidx) => {
+            if (idx !== sidx) return question;
+            return {...question, [name]: image};
+        });
 
+        this.setState({
+            questions: newQuestion
+        });
+    }
     handleAddQuestion = () => {
         this.setState({
             questions: this.state.questions.concat([{
                 question: "",
                 point: 1,
-                answers: [{valid: false, answerText: "Vrai", "image": false}, {
+                image: false,
+                answers: [{valid: false, answerText: "Vrai"}, {
                     valid: false,
-                    answerText: "Faux",
-                    "image": false
+                    answerText: "Faux"
                 }]
             }])
         });
@@ -131,8 +147,25 @@ class CreerQuiz extends Component {
         //this.props.history.push('/');
 
     };
+    renderTypeQuestion (question,idx){
+        if(question.image === true){
+            return(
+                <div className="flex wrap">
 
-    render() {
+            </div>);
+        }else {
+            return(
+                <div className="flex wrap">
+                    <AnswerTextQuestion id={idx} value={question.answers[0].answerText}
+                                        checked={question.answers[0].valid}
+                                        handleOnAnswersCheckboxChange={this.handleOnAnswersCheckboxChange}/>
+                    <AnswerTextQuestion id={idx} value={question.answers[1].answerText}
+                                        checked={question.answers[1].valid}
+                                        handleOnAnswersCheckboxChange={this.handleOnAnswersCheckboxChange}/>
+                </div>);
+        }
+    }
+    render(){
         if (!Login.getUser()) {
             return (
                 <Error/>
@@ -155,14 +188,11 @@ class CreerQuiz extends Component {
                                            handleOnChangeQuestion={this.handleOnChangeQuestion}/>
                             <label>
                                 Réponse:
-                                <div className="flex wrap">
-                                    <AnswerTextQuestion id={idx} value={question.answers[0].answerText}
-                                                        checked={question.answers[0].valid}
-                                                        handleOnAnswersCheckboxChange={this.handleOnAnswersCheckboxChange}/>
-                                    <AnswerTextQuestion id={idx} value={question.answers[1].answerText}
-                                                        checked={question.answers[1].valid}
-                                                        handleOnAnswersCheckboxChange={this.handleOnAnswersCheckboxChange}/>
-                                </div>
+                                <select name="image" onChange={this.handleSelectImage(idx)}>
+                                    <option value="text">Text</option>
+                                    <option value="image">Image</option>
+                                </select>
+                                {this.renderTypeQuestion(question,idx)}
                             </label>
                             <RemoveQuestion id={idx} handleRemoveQuestion={this.handleRemoveQuestion}/>
                             <hr/>
