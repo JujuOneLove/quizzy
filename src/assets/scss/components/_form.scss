@@ -32,19 +32,18 @@ form{
     input{
       margin: 0;
     }
-    select{
-      height: 200px;
-      margin: 0;
-      width: 100%;
-      max-width: 264px;
-      border-style: inset;
-      border-width: 2px;
-      border-image: initial;
-      option{
-        line-height: 37px;
-        height: 37px;
-        margin-top: 6px;
-        outline: none;
+    .select{
+      .css-bg1rzq-control,.css-1szy77t-control{
+          outline: none;
+          border-radius: 25px;
+          border-color: $violet;
+          margin: 0;
+          width: 100%;
+          max-width: 264px;
+          border-style: inset;
+          border-width: 2px;
+          border-image: initial;
+        box-shadow: none;
       }
     }
     span.btn{

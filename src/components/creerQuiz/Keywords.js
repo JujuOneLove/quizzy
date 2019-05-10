@@ -8,6 +8,7 @@ class Keywords extends Component {
                 <Select
                     isMulti
                     name="keyword"
+                    className="select"
                     placeholder={""}
                     onChange={this.props.handleOnChangeKeywords}
                     options={this.props.options}
