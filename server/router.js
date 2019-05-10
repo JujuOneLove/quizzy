@@ -14,6 +14,23 @@ router
     .use(bodyParser.urlencoded({
         extended: true
     }))
+    .all("/auth/*", (req, res, next) => {
+        if (!req.headers || !req.headers.username || !req.headers.password) {
+            res.json({isConnected: false});
+            return;
+        }
+        Users.findOne({name: req.headers.username, password: md5(req.headers.password)})
+            .exec((err, data) => {
+                if (err) console.log("error", err);
+                else {
+                    if (data) {
+                        console.log(data);
+                        next();
+                    }
+                    else res.json({isConnected: false})
+                }
+            })
+    })
     .get("/quizzes", (req, res) => {
         Quizzes.find({}, function (err, quizzes) {
             if (err) {
@@ -97,9 +114,8 @@ router
                 })
         }
     })
-    .post("/quizzes/new", (req, res)=>{
+    .post("/auth/quizzes/new", (req, res)=>{
         const quiz = req.body;
-        console.log(quiz);
         req.files.picture.mv(__dirname + '/../public/img/' + req.files.picture.name,
             (err) => {
                 if (err)
@@ -125,7 +141,6 @@ router
                 res.status(200);
             }
         });
-
     })
     .use((req, res) => {
         res.status(400);
