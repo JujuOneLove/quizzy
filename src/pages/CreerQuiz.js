@@ -5,13 +5,13 @@ import Login from "./Login";
 import Buble from "../components/Buble";
 import {
     Nom,
-    Logo,
     Keywords,
     AddQuestion,
     RemoveQuestion,
     NameQuestion,
     ScoreQuestion,
-    AnswerTextQuestion
+    AnswerTextQuestion,
+    Image
 } from "../components/creerQuiz";
 
 class CreerQuiz extends Component {
@@ -20,7 +20,7 @@ class CreerQuiz extends Component {
         this.state = {
             name: '',
             logo: '',
-            keywords: null,
+            keywords: [],
             options: [
                 {value: 'top', label: 'Top'},
                 {value: 'sport', label: 'Sport'},
@@ -34,9 +34,14 @@ class CreerQuiz extends Component {
                 question: "",
                 point: 1,
                 image: false,
-                answers: [{valid: true, answerText: "Vrai"}, {
+                answers: [{
+                    valid: true,
+                    answerText: "Vrai",
+                    image: ""
+                }, {
                     valid: false,
-                    answerText: "Faux"
+                    answerText: "Faux",
+                    image: ""
                 }]
             }],
         };
@@ -53,22 +58,83 @@ class CreerQuiz extends Component {
             [name]: value
         });
     }
+
     handleSelectImage = idx => event => {
         const target = event.target;
         const value = target.value;
-        const name = target.name;
         let image;
-        if (value === 'image'){
+        if (value === 'image') {
             image = true;
-        }else image = false;
+        } else image = false;
         const newQuestion = this.state.questions.map((question, sidx) => {
             if (idx !== sidx) return question;
-            return {...question, [name]: image};
+            else {
+                return {
+                    question: question.question,
+                    point: question.point,
+                    image: image,
+                    answers: question.answers
+                };
+            }
         });
-
         this.setState({
             questions: newQuestion
         });
+    }
+    handleOnChangeImage = idx => event => {
+        const target = event.target;
+        const value = '/img/questions/'+target.files[0].name;
+        const className = target.className;
+        if (className === "Logo") {
+            this.setState({
+                logo: '/img/' + target.files[0].name
+            });
+        }else{
+            // eslint-disable-next-line array-callback-return
+            const newQuestion = this.state.questions.map((question, sidx) => {
+                if (idx !== sidx) return question;
+                else {
+                    if (className === "Vrai") {
+                        return {
+                            question: question.question,
+                            point: question.point,
+                            image: question.image,
+                            answers: [{
+                                valid: question.answers[0].valid,
+                                answerText: question.answers[0].answerText,
+                                image: value
+                            },
+                                {
+                                    valid: question.answers[1].valid,
+                                    answerText: question.answers[1].answerText,
+                                    image: question.answers[1].image
+                                }]
+                        };
+                    } else if (className === "Faux") {
+                        return {
+                            question: question.question,
+                            point: question.point,
+                            image: question.image,
+                            answers: [{
+                                valid: question.answers[0].valid,
+                                answerText: question.answers[0].answerText,
+                                image: question.answers[0].image
+                            },
+                                {
+                                    valid: question.answers[1].valid,
+                                    answerText: question.answers[1].answerText,
+                                    image: value
+                                }]
+                        };
+                    }
+                }
+            });
+            console.log(newQuestion);
+            this.setState({
+                questions: newQuestion
+            });
+        }
+
     }
     handleAddQuestion = () => {
         this.setState({
@@ -76,20 +142,25 @@ class CreerQuiz extends Component {
                 question: "",
                 point: 1,
                 image: false,
-                answers: [{valid: false, answerText: "Vrai"}, {
+                answers: [{
+                    valid: true,
+                    answerText: "Vrai",
+                    image: ""
+                }, {
                     valid: false,
-                    answerText: "Faux"
+                    answerText: "Faux",
+                    image: ""
                 }]
             }])
         });
     };
 
     handleOnChangeKeywords = (keywords) => {
-        let stringKeyword=[];
-        keywords.forEach(function(k) {
+        let stringKeyword = [];
+        keywords.forEach(function (k) {
             stringKeyword.push(k.value);
         });
-        this.setState({keywords:stringKeyword});
+        this.setState({keywords: stringKeyword});
     }
 
     handleRemoveQuestion = idx => () => {
@@ -134,27 +205,35 @@ class CreerQuiz extends Component {
         evt.preventDefault();
         const fd = new FormData();
 
-        fd.append('picture', evt.target.picture1.files[0], evt.target.picture1.files[0].name);
+        let inputFiles = evt.target.picture;
+        let keys = Object.keys(inputFiles)
+        keys.forEach((key) => {
+            fd.append('picture', inputFiles[key].files[0], inputFiles[key].files[0].name);
+        });
         fd.append('name', this.state.name);
+        fd.append('logo', this.state.logo);
         fd.append('keywords', JSON.stringify(this.state.keywords));
-        fd.append('createdBy', JSON.stringify(this.state.createdBy));
+        fd.append('createdBy', this.state.createdBy);
         fd.append('questions', JSON.stringify(this.state.questions));
 
         axios.post('http://localhost:8081/auth/quizzes/new', fd, {headers: Login.getUser()}).then(
             res => console.log('then', res));
 
         console.log('state', this.state);
-        //this.props.history.push('/');
+        this.props.history.push('/');
 
     };
-    renderTypeQuestion (question,idx){
-        if(question.image === true){
-            return(
-                <div className="flex wrap">
 
-            </div>);
-        }else {
-            return(
+    renderTypeQuestion(question, idx) {
+        if (question.image === true) {
+            return (
+                <div className="flex wrap">
+                    <Image id={idx} value={question.answers[0].answerText} handleOnChangeImage={this.handleOnChangeImage}/>
+                    <Image id={idx} value={question.answers[1].answerText} handleOnChangeImage={this.handleOnChangeImage}/>
+                </div>
+            );
+        } else {
+            return (
                 <div className="flex wrap">
                     <AnswerTextQuestion id={idx} value={question.answers[0].answerText}
                                         checked={question.answers[0].valid}
@@ -165,7 +244,8 @@ class CreerQuiz extends Component {
                 </div>);
         }
     }
-    render(){
+
+    render() {
         if (!Login.getUser()) {
             return (
                 <Error/>
@@ -176,7 +256,7 @@ class CreerQuiz extends Component {
                 <form className="block" encType="multipart/form-data" onSubmit={this.handleSubmit}>
                     <Nom name={this.props.name} handleInputChange={this.handleInputChange}/>
                     <br/>
-                    <Logo/>
+                    <Image id={"picture"} value={"Logo"} handleOnChangeImage={this.handleOnChangeImage}/>
                     <br/>
                     <Keywords options={this.state.options} handleOnChangeKeywords={this.handleOnChangeKeywords}/>
                     <br/>
@@ -192,7 +272,8 @@ class CreerQuiz extends Component {
                                     <option value="text">Text</option>
                                     <option value="image">Image</option>
                                 </select>
-                                {this.renderTypeQuestion(question,idx)}
+                                <br/>
+                                {this.renderTypeQuestion(question, idx)}
                             </label>
                             <RemoveQuestion id={idx} handleRemoveQuestion={this.handleRemoveQuestion}/>
                             <hr/>

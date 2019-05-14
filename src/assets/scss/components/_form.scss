@@ -32,6 +32,19 @@ form{
     input{
       margin: 0;
     }
+    select{
+      outline: none;
+      border-radius: 25px;
+      border-color: $violet;
+      margin: 0;
+      width: 100%;
+      max-width: 264px;
+      height: 37px;
+      border-style: inset;
+      border-width: 2px;
+      border-image: initial;
+      box-shadow: none;
+    }
     .select{
       .css-bg1rzq-control,.css-1szy77t-control{
           outline: none;

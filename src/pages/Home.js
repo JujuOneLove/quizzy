@@ -17,7 +17,7 @@ export default class Home extends Component {
         });
     }
     render() {
-        let top = this.state.quizzes.filter(quizz => ((quizz.keywords.indexOf('top')) !== -1) )
+        let top = this.state.quizzes.filter(quizz => ((quizz.keywords.indexOf('top')) !== -1) );
         return (
             <div className="container">
                 <h2>Top quiz !</h2>

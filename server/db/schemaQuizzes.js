@@ -12,6 +12,7 @@ var quizzesSchema = new mongoose.Schema({
         answers: [{
             valid: Boolean,
             answerText: String,
+            image: String
         }]
     }],
     topScore: {

@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const router = express.Router();
 
 
-
 let Quizzes = require('./db/schemaQuizzes');
 let Users = require('./db/schemaUsers');
 const md5 = require('md5');
@@ -26,8 +25,7 @@ router
                     if (data) {
                         console.log(data);
                         next();
-                    }
-                    else res.json({isConnected: false})
+                    } else res.json({isConnected: false})
                 }
             })
     })
@@ -58,7 +56,7 @@ router
         });
     })
     .get("/quizzes/user/:user", (req, res) => {
-        Quizzes.find({ createdBy:req.params.user}, function (err, quizzes) {
+        Quizzes.find({createdBy: req.params.user}, function (err, quizzes) {
             if (err) {
                 res.status(400);
                 res.json({
@@ -70,13 +68,23 @@ router
             }
         });
     })
-    .post("/savescore",(req, res) => {
-        Users.updateOne({name:req.body.user.username, password: md5(req.body.user.password)}, { $push:{scores:{score:req.body.score,quizId: req.body.quiz}}}, function (err) {
-            if(err)
+    .post("/savescore", (req, res) => {
+        Users.updateOne({
+            name: req.body.user.username,
+            password: md5(req.body.user.password)
+        }, {$push: {scores: {score: req.body.score, quizId: req.body.quiz}}}, function (err) {
+            if (err)
                 res.status(400);
         });
-        Quizzes.updateOne({_id:req.body.quiz._id},{$push:{topScore:{score:req.body.score, name:req.body.user.username}}}, function (err) {
-            if(err)
+        Quizzes.updateOne({_id: req.body.quiz._id}, {
+            $push: {
+                topScore: {
+                    score: req.body.score,
+                    name: req.body.user.username
+                }
+            }
+        }, function (err) {
+            if (err)
                 res.status(400);
         });
         res.status(200);
@@ -105,7 +113,7 @@ router
                     else {
                         if (data) res.json({isConnected: false});
                         else {
-                            const q = new Users({name:req.body.username,password:md5(req.body.password)});
+                            const q = new Users({name: req.body.username, password: md5(req.body.password)});
                             q.save()
                                 .then(() => res.json({isConnected: true}))
                                 .catch(err => res.status(400).send("unable to save to database:", err))
@@ -114,19 +122,30 @@ router
                 })
         }
     })
-    .post("/auth/quizzes/new", (req, res)=>{
+    .post("/auth/quizzes/new", (req, res) => {
         const quiz = req.body;
-        req.files.picture.mv(__dirname + '/../public/img/' + req.files.picture.name,
-            (err) => {
-                if (err)
-                    return res.status(500).send(err);
+        let cpt = 0;
+        req.files.picture.map((picture,id) => {
+            if (id === 0) {
+                picture.mv(__dirname + '/../public/img/' + picture.name,
+                    (err) => {
+                        if (err)
+                            return res.status(500).send(err);
+                    }
+                );
+            } else {
+                picture.mv(__dirname + '/../public/img/questions/' + picture.name,
+                    (err) => {
+                        if (err)
+                            return res.status(500).send(err);
+                    }
+                );
             }
-        );
-
+        });
         Quizzes.create({
             name: quiz.name,
-            logo: '/img/' + req.files.picture.name,
-            createdBy: JSON.parse(quiz.createdBy),
+            logo:  quiz.logo,
+            createdBy: quiz.createdBy,
             keywords: JSON.parse(quiz.keywords),
             questionsAndAnswers: JSON.parse(quiz.questions)
         }, function (err, quizBdd) {
