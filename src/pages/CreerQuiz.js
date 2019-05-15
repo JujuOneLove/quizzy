@@ -232,16 +232,6 @@ class CreerQuiz extends Component {
                     <Image id={idx} value={question.answers[1].answerText} handleOnChangeImage={this.handleOnChangeImage}/>
                 </div>
             );
-        } else {
-            return (
-                <div className="flex wrap">
-                    <AnswerTextQuestion id={idx} value={question.answers[0].answerText}
-                                        checked={question.answers[0].valid}
-                                        handleOnAnswersCheckboxChange={this.handleOnAnswersCheckboxChange}/>
-                    <AnswerTextQuestion id={idx} value={question.answers[1].answerText}
-                                        checked={question.answers[1].valid}
-                                        handleOnAnswersCheckboxChange={this.handleOnAnswersCheckboxChange}/>
-                </div>);
         }
     }
 
@@ -274,6 +264,14 @@ class CreerQuiz extends Component {
                                 </select>
                                 <br/>
                                 {this.renderTypeQuestion(question, idx)}
+                                <div className="flex wrap">
+                                    <AnswerTextQuestion id={idx} value={question.answers[0].answerText}
+                                                        checked={question.answers[0].valid}
+                                                        handleOnAnswersCheckboxChange={this.handleOnAnswersCheckboxChange}/>
+                                    <AnswerTextQuestion id={idx} value={question.answers[1].answerText}
+                                                        checked={question.answers[1].valid}
+                                                        handleOnAnswersCheckboxChange={this.handleOnAnswersCheckboxChange}/>
+                                </div>
                             </label>
                             <RemoveQuestion id={idx} handleRemoveQuestion={this.handleRemoveQuestion}/>
                             <hr/>

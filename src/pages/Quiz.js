@@ -13,7 +13,8 @@ class Quiz extends Component {
         this.state = {
             quiz: {},
             currentQuestion: 1,
-            currentScore: 0
+            currentScore: 0,
+            currentAnswer: 0
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -45,7 +46,8 @@ class Quiz extends Component {
         this.setState((prevState, props) => {
             return {
                 currentQuestion: prevState.currentQuestion + 1,
-                currentScore: JSON.parse(choice) ? prevState.currentScore + currPoints : prevState.currentScore
+                currentScore: JSON.parse(choice) ? prevState.currentScore + currPoints : prevState.currentScore,
+                currentAnswer: JSON.parse(choice) ? prevState.currentAnswer+1 : prevState.currentAnswer
             };
         });
     }
@@ -66,7 +68,7 @@ class Quiz extends Component {
                             <img src={this.state.quiz.logo} alt={this.state.quiz.name}/>
                             <div>
                                 {this.state.currentQuestion > questions.length &&
-                                <Results total={questions.length} score={this.state.currentScore} saveScore={()=>this.saveScore()}/>
+                                <Results total={questions.length} score={this.state.currentAnswer} saveScore={()=>this.saveScore()}/>
                                 }
 
                                 {this.state.currentQuestion <= questions.length &&
