@@ -3,6 +3,7 @@ import axios from 'axios';
 import Error from "./Error401";
 import Login from "./Login";
 import Buble from "../components/Buble";
+import Select from 'react-select'
 import {
     Nom,
     Keywords,
@@ -58,10 +59,8 @@ class CreerQuiz extends Component {
             [name]: value
         });
     }
-
-    handleSelectImage = idx => event => {
-        const target = event.target;
-        const value = target.value;
+    handleSelectImage = idx => result => {
+        const value = result.value;
         let image;
         if (value === 'image') {
             image = true;
@@ -260,10 +259,15 @@ class CreerQuiz extends Component {
                                            handleOnChangeQuestion={this.handleOnChangeQuestion}/>
                             <label>
                                 Réponse:
-                                <select name="image" onChange={this.handleSelectImage(idx)}>
-                                    <option value="text">Text</option>
-                                    <option value="image">Image</option>
-                                </select>
+                                <Select
+                                    name="image"
+                                    className="select"
+                                    onChange={this.handleSelectImage(idx)}
+                                    defaultValue={[{value: 'text', label: 'Text'}]}
+                                    options={[
+                                        {value: 'text', label: 'Text'},
+                                        {value: 'image', label: 'Image'}]}
+                                />
                                 <br/>
                                 {this.renderTypeQuestion(question, idx)}
                                 <div className="flex wrap">
