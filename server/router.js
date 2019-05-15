@@ -165,10 +165,6 @@ router
             if(err)
                 res.status(400);
         });
-        Users.updateOne({name:req.headers.username, password: md5(req.headers.password)},{$pull:{createdQuizzes: {_id:req.params.id}}}, function (err) {
-            if(err)
-                res.status(400);
-        });
         res.status(200);
         res.send("ok");
     })
