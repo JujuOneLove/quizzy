@@ -29,7 +29,6 @@ router
                 }
             })
     })
-    //routes utilisées
     .get("/quizzes", (req, res) => {
         Quizzes.find({}, function (err, quizzes) {
             if (err) {
@@ -128,6 +127,7 @@ router
         const picture = req.files.picture;
         let logo = false;
         let keys = Object.keys(picture)
+        console.log(keys)
         let cpt = 0;
         keys.forEach((key) => {
             if(parseInt(key,10) === cpt){
@@ -151,31 +151,32 @@ router
             cpt++;
         });
         if(logo === false){
-            picture.mv(__dirname + '/../public/img/' + picture.name,
+            picture.mv(__dirname + '/../public/img/' + picture,
                 (err) => {
                     if (err)
                         return res.status(500).send(err);
                 }
             );
         }
-            Quizzes.create({
-                name: quiz.name,
-                logo: quiz.logo,
-                createdBy: quiz.createdBy,
-                keywords: JSON.parse(quiz.keywords),
-                questionsAndAnswers: JSON.parse(quiz.questions)
-            }, function (err, quizBdd) {
-                if (err) {
-                    res.status(400);
-                    console.log('err', err);
-                    res.json({
-                        error: "Bad request"
-                    });
-                } else {
-                    res.json(quizBdd);
-                    res.status(200);
-                }
-            });
+
+        Quizzes.create({
+            name: quiz.name,
+            logo:  quiz.logo,
+            createdBy: quiz.createdBy,
+            keywords: JSON.parse(quiz.keywords),
+            questionsAndAnswers: JSON.parse(quiz.questions)
+        }, function (err, quizBdd) {
+            if (err) {
+                res.status(400);
+                console.log('err', err);
+                res.json({
+                    error: "Bad request"
+                });
+            } else {
+                res.json(quizBdd);
+                res.status(200);
+            }
+        });
     })
     //Delete Quiz
     .delete("/auth/quizzes/:id",(req, res) => {
