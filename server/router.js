@@ -14,6 +14,42 @@ router
     .use(bodyParser.urlencoded({
         extended: true
     }))
+    //sécurisation routes
+    .all("/quizzes/new", (req, res, next) => {
+        if (!req.headers || !req.headers.username || !req.headers.password) {
+            res.json({isConnected: false});
+            return;
+        }
+        Users.findOne({name: req.headers.username, password: md5(req.headers.password)})
+            .exec((err, data) => {
+                if (err) console.log("error", err);
+                else {
+                    if (data) {
+                        console.log(data);
+                        next();
+                    }
+                    else res.json({isConnected: false})
+                }
+            })
+    })
+    .delete("/quizzes/:id", (req, res, next) => {
+        if (!req.headers || !req.headers.username || !req.headers.password) {
+            res.json({isConnected: false});
+            return;
+        }
+        Users.findOne({name: req.headers.username, password: md5(req.headers.password)})
+            .exec((err, data) => {
+                if (err) console.log("error", err);
+                else {
+                    if (data) {
+                        console.log(data);
+                        next();
+                    }
+                    else res.json({isConnected: false})
+                }
+            })
+    })
+    //routes utilisées
     .get("/quizzes", (req, res) => {
         Quizzes.find({}, function (err, quizzes) {
             if (err) {
@@ -98,34 +134,41 @@ router
         }
     })
     .post("/quizzes/new", (req, res)=>{
-        const quiz = req.body;
-        console.log(quiz);
-        req.files.picture.mv(__dirname + '/../public/img/' + req.files.picture.name,
-            (err) => {
-                if (err)
-                    return res.status(500).send(err);
-            }
-        );
+            const quiz = req.body;
+            console.log(quiz);
+            req.files.picture.mv(__dirname + '/../public/img/' + req.files.picture.name,
+                (err) => {
+                    if (err)
+                        return res.status(500).send(err);
+                }
+            );
 
-        Quizzes.create({
-            name: quiz.name,
-            logo: '/img/' + req.files.picture.name,
-            createdBy: JSON.parse(quiz.createdBy),
-            keywords: JSON.parse(quiz.keywords),
-            questionsAndAnswers: JSON.parse(quiz.questions)
-        }, function (err, quizBdd) {
-            if (err) {
+            Quizzes.create({
+                name: quiz.name,
+                logo: '/img/' + req.files.picture.name,
+                createdBy: JSON.parse(quiz.createdBy),
+                keywords: JSON.parse(quiz.keywords),
+                questionsAndAnswers: JSON.parse(quiz.questions)
+            }, function (err, quizBdd) {
+                if (err) {
+                    res.status(400);
+                    console.log('err', err);
+                    res.json({
+                        error: "Bad request"
+                    });
+                } else {
+                    res.json(quizBdd);
+                    res.status(200);
+                }
+            });
+    })
+    .delete("/quizzes/:id",(req, res) => {
+        Quizzes.deleteOne({_id:req.params.id}, function (err) {
+            if(err)
                 res.status(400);
-                console.log('err', err);
-                res.json({
-                    error: "Bad request"
-                });
-            } else {
-                res.json(quizBdd);
-                res.status(200);
-            }
         });
-
+        res.status(200);
+        res.send("ok");
     })
     .use((req, res) => {
         res.status(400);
