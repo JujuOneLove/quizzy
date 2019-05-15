@@ -124,24 +124,41 @@ router
     })
     .post("/auth/quizzes/new", (req, res) => {
         const quiz = req.body;
+        const picture = req.files.picture;
+        let logo = false;
+        let keys = Object.keys(picture)
+        console.log(keys)
         let cpt = 0;
-        req.files.picture.map((picture,id) => {
-            if (id === 0) {
-                picture.mv(__dirname + '/../public/img/' + picture.name,
-                    (err) => {
-                        if (err)
-                            return res.status(500).send(err);
-                    }
-                );
-            } else {
-                picture.mv(__dirname + '/../public/img/questions/' + picture.name,
-                    (err) => {
-                        if (err)
-                            return res.status(500).send(err);
-                    }
-                );
+        keys.forEach((key) => {
+            if(parseInt(key,10) === cpt){
+                if (parseInt(key,10) === 0) {
+                    picture[key].mv(__dirname + '/../public/img/' + picture[key].name,
+                        (err) => {
+                            if (err)
+                                return res.status(500).send(err);
+                        }
+                    );
+                } else {
+                    picture[key].mv(__dirname + '/../public/img/questions/' + picture[key].name,
+                        (err) => {
+                            if (err)
+                                return res.status(500).send(err);
+                        }
+                    );
+                }
+                logo = logo === false ? true : true;
             }
+            cpt++;
         });
+        if(logo === false){
+            picture.mv(__dirname + '/../public/img/' + picture,
+                (err) => {
+                    if (err)
+                        return res.status(500).send(err);
+                }
+            );
+        }
+
         Quizzes.create({
             name: quiz.name,
             logo:  quiz.logo,

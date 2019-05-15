@@ -83,13 +83,17 @@ class CreerQuiz extends Component {
     }
     handleOnChangeImage = idx => event => {
         const target = event.target;
-        const value = '/img/questions/'+target.files[0].name;
+        let value;
+        console.log(target.files[0]);
+        if (typeof target.files[0] === 'undefined') {
+            value = '';
+        } else value = target.files[0].name;
         const className = target.className;
         if (className === "Logo") {
             this.setState({
-                logo: '/img/' + target.files[0].name
+                logo: '/img/' + value
             });
-        }else{
+        } else {
             // eslint-disable-next-line array-callback-return
             const newQuestion = this.state.questions.map((question, sidx) => {
                 if (idx !== sidx) return question;
@@ -102,7 +106,7 @@ class CreerQuiz extends Component {
                             answers: [{
                                 valid: question.answers[0].valid,
                                 answerText: question.answers[0].answerText,
-                                image: value
+                                image: '/img/questions/' + value
                             },
                                 {
                                     valid: question.answers[1].valid,
@@ -123,7 +127,7 @@ class CreerQuiz extends Component {
                                 {
                                     valid: question.answers[1].valid,
                                     answerText: question.answers[1].answerText,
-                                    image: value
+                                    image: '/img/questions/' + value
                                 }]
                         };
                     }
@@ -204,32 +208,36 @@ class CreerQuiz extends Component {
     handleSubmit = evt => {
         evt.preventDefault();
         const fd = new FormData();
-
+        let logo = false;
         let inputFiles = evt.target.picture;
         let keys = Object.keys(inputFiles)
+        let cpt = 0;
         keys.forEach((key) => {
-            fd.append('picture', inputFiles[key].files[0], inputFiles[key].files[0].name);
+            if(parseInt(key,10) === cpt){
+                fd.append('picture', inputFiles[key].files[0], inputFiles[key].files[0].name);
+                logo = logo === false ? true : true;
+            }
+            cpt++;
         });
+        if(logo === false){
+            fd.append('picture', inputFiles.files[0], inputFiles.files[0].name);
+        }
         fd.append('name', this.state.name);
         fd.append('logo', this.state.logo);
         fd.append('keywords', JSON.stringify(this.state.keywords));
         fd.append('createdBy', this.state.createdBy);
         fd.append('questions', JSON.stringify(this.state.questions));
-
-        axios.post('http://localhost:8081/auth/quizzes/new', fd, {headers: Login.getUser()}).then(
-            res => console.log('then', res));
-
-        console.log('state', this.state);
-        this.props.history.push('/');
-
+        axios.post('http://localhost:8081/auth/quizzes/new', fd, {headers: Login.getUser()}).then(/*this.props.history.push('/')*/)
     };
 
     renderTypeQuestion(question, idx) {
         if (question.image === true) {
             return (
                 <div className="flex wrap">
-                    <Image id={idx} value={question.answers[0].answerText} handleOnChangeImage={this.handleOnChangeImage}/>
-                    <Image id={idx} value={question.answers[1].answerText} handleOnChangeImage={this.handleOnChangeImage}/>
+                    <Image id={idx} value={question.answers[0].answerText}
+                           handleOnChangeImage={this.handleOnChangeImage}/>
+                    <Image id={idx} value={question.answers[1].answerText}
+                           handleOnChangeImage={this.handleOnChangeImage}/>
                 </div>
             );
         }
