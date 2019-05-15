@@ -4,7 +4,6 @@ class Question extends Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        console.log('props', this.props);
     }
 
     handleChange(e) {
@@ -18,14 +17,16 @@ class Question extends Component {
             <div>
                 <h3>{question.question}</h3>
                 <ul className="flex wrap">
-                    {question.answers.map((choice) => {
-                        if(choice.image === true){
-                            return (
-                                <span className="image" key={Math.floor(Math.random() * Math.floor(1337))}>
+                    {question.image === true && question.answers.map((choice) => {
+                        return (
+                            <div className="image" key={Math.floor(Math.random() * Math.floor(1337))}>
                                     <input type="radio" onChange={this.handleChange} name={choice.answerText}
-                                           value={choice.valid}/><img  src={choice.answerText} alt="reponse"/>
-                                </span>)
-                        } else return (
+                                           value={choice.valid}/><img src={choice.image} alt="reponse"/>
+                                </div>)
+                    })
+                    }
+                    {question.image === false && question.answers.map((choice) => {
+                        return (
                             <span className="btn" key={Math.floor(Math.random() * Math.floor(1337))}>
                                 <input type="radio" onChange={this.handleChange} name={choice.answerText}
                                        value={choice.valid}/> {choice.answerText}
