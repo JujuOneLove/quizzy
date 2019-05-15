@@ -31,6 +31,23 @@ router
                 }
             })
     })
+    .delete("/quizzes/:id", (req, res, next) => {
+        if (!req.headers || !req.headers.username || !req.headers.password) {
+            res.json({isConnected: false});
+            return;
+        }
+        Users.findOne({name: req.headers.username, password: md5(req.headers.password)})
+            .exec((err, data) => {
+                if (err) console.log("error", err);
+                else {
+                    if (data) {
+                        console.log(data);
+                        next();
+                    }
+                    else res.json({isConnected: false})
+                }
+            })
+    })
     .get("/quizzes", (req, res) => {
         Quizzes.find({}, function (err, quizzes) {
             if (err) {
@@ -142,6 +159,18 @@ router
                     res.status(200);
                 }
             });
+    })
+    .delete("/quizzes/:id",(req, res) => {
+        Quizzes.deleteOne({_id:req.params.id}, function (err) {
+            if(err)
+                res.status(400);
+        });
+        Users.updateOne({name:req.headers.username, password: md5(req.headers.password)},{$pull:{createdQuizzes: {_id:req.params.id}}}, function (err) {
+            if(err)
+                res.status(400);
+        });
+        res.status(200);
+        res.send("ok");
     })
     .use((req, res) => {
         res.status(400);
