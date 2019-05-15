@@ -79,6 +79,8 @@
       }
       .image{
         position: relative;
+        width: 125px;
+        margin: 10px auto auto;
         input{
           opacity: 0;
           width: 125px;
@@ -92,7 +94,7 @@
         img{
           cursor: pointer;
           z-index: 1;
-          margin: 10px 20px;
+          margin: auto;
           @include media('desktop'){
               max-width: 125px;
               height: 125px;
