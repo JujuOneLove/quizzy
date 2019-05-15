@@ -14,7 +14,7 @@ router
     .use(bodyParser.urlencoded({
         extended: true
     }))
-    .all("/auth/*", (req, res, next) => {
+    .all("/quizzes/new", (req, res, next) => {
         if (!req.headers || !req.headers.username || !req.headers.password) {
             res.json({isConnected: false});
             return;
@@ -114,7 +114,7 @@ router
                 })
         }
     })
-    .post("/auth/quizzes/new", (req, res)=>{
+    .post("/quizzes/new", (req, res)=>{
             const quiz = req.body;
             console.log(quiz);
             req.files.picture.mv(__dirname + '/../public/img/' + req.files.picture.name,
