@@ -14,6 +14,7 @@ router
     .use(bodyParser.urlencoded({
         extended: true
     }))
+    //sécurisation routes
     .all("/quizzes/new", (req, res, next) => {
         if (!req.headers || !req.headers.username || !req.headers.password) {
             res.json({isConnected: false});
@@ -48,6 +49,7 @@ router
                 }
             })
     })
+    //routes utilisées
     .get("/quizzes", (req, res) => {
         Quizzes.find({}, function (err, quizzes) {
             if (err) {
