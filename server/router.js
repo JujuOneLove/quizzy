@@ -127,7 +127,6 @@ router
         const picture = req.files.picture;
         let logo = false;
         let keys = Object.keys(picture)
-        console.log(keys)
         let cpt = 0;
         keys.forEach((key) => {
             if(parseInt(key,10) === cpt){
@@ -151,7 +150,7 @@ router
             cpt++;
         });
         if(logo === false){
-            picture.mv(__dirname + '/../public/img/' + picture,
+            picture.mv(__dirname + '/../public/img/' + picture.name,
                 (err) => {
                     if (err)
                         return res.status(500).send(err);

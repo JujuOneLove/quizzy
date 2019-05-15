@@ -84,7 +84,6 @@ class CreerQuiz extends Component {
     handleOnChangeImage = idx => event => {
         const target = event.target;
         let value;
-        console.log(target.files[0]);
         if (typeof target.files[0] === 'undefined') {
             value = '';
         } else value = target.files[0].name;
@@ -133,7 +132,6 @@ class CreerQuiz extends Component {
                     }
                 }
             });
-            console.log(newQuestion);
             this.setState({
                 questions: newQuestion
             });
@@ -183,8 +181,6 @@ class CreerQuiz extends Component {
         });
 
         this.setState({questions: newQuestion});
-
-        console.log('ttt', this.state)
     };
 
     handleOnAnswersCheckboxChange = idx => evt => {
@@ -201,8 +197,6 @@ class CreerQuiz extends Component {
         });
 
         this.setState({questions: newQuestions});
-
-        console.log('handlecheckbox', this.state);
     }
 
     handleSubmit = evt => {
