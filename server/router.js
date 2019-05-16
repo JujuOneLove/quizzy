@@ -77,18 +77,26 @@ router
             if (err)
                 res.status(400);
         });
-        Quizzes.updateOne({_id: req.body.quiz._id}, {
-            $push: {
-                topScore: {
-                    score: req.body.score,
-                    name: req.body.user.username
+        Quizzes.findById(req.body.quiz._id,(err,data)=>{
+            if(err) return res.status(400).send(err);
+            if(data) {
+                if (!data.topScore.score|| data.topScore.score < req.body.score) {
+                    Quizzes.updateOne({_id: req.body.quiz._id}, {
+                        $set: {
+                            topScore: {
+                                score: req.body.score,
+                                name: req.body.user.username
+                            }
+                        }
+                    }, function (err) {
+                        if (err)
+                            return res.status(400).send(err);
+                    });
                 }
             }
-        }, function (err) {
-            if (err)
-                res.status(400);
+            else return res.status(404).json({error:"Not Found"});
         });
-        res.status(200);
+        res.status(200).end();
     })
     .post("/login", (req, res) => {
         if (!req.body.username || !req.body.password) {
@@ -127,7 +135,7 @@ router
         const quiz = req.body;
         const picture = req.files.picture;
         let logo = false;
-        let keys = Object.keys(picture)
+        let keys = Object.keys(picture);
         let cpt = 0;
         keys.forEach((key) => {
             if (parseInt(key, 10) === cpt) {
@@ -181,9 +189,11 @@ router
     //Delete Quiz
     .delete("/auth/quizzes/:id", (req, res) => {
         Quizzes.findById(req.params.id, function (err, data) {
-            if (err) res.status(400);
+            if (err) return res.status(400).send(err);
             else {
                 if (data) {
+                    if (data.createdBy !== req.headers.username)
+                        return res.status(403).json({error: "Forbidden"});
                     fs.unlink(__dirname + '/../public/' + data.logo, (err) => {
                         if (err) res.status(400);
                     });
@@ -196,16 +206,31 @@ router
                             }
                         }
                     }
-                }
+                    Quizzes.deleteOne({_id: req.params.id}, function (err) {
+                        if (err) res.status(400);
+                    });
+
+                    res.status(200);
+                    res.send("ok");
+
+                } else return res.status(404).send({error: "Not Found"});
             }
         });
-
-        Quizzes.deleteOne({_id: req.params.id}, function (err) {
-            if (err) res.status(400);
+    })
+    //Update Quiz
+    .post("/auth/quizzes/update/:id", (req, res) => {
+        Quizzes.findById(req.params.id, (err, data) => {
+            if (data)
+                if (data.createdBy !== req.headers.username) {
+                    return res.status(403).json({error: "Forbidden"});
+                }
+                else return res.status(404).send({error:"Not Found"});
         });
-
-        res.status(200);
-        res.send("ok");
+        Quizzes.updateOne({_id: req.params.id}, {$set:{name: req.body.name,
+                keywords: JSON.parse(req.body.keywords),
+                questionsAndAnswers: JSON.parse(req.body.questionsAndAnswers),
+                topScore: {
+                }}})
     })
     .use((req, res) => {
         res.status(400);
