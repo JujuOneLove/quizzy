@@ -86,7 +86,7 @@ class Login extends React.Component {
     setPassword(e) {
         const user = this.state.user || {};
         user.password = e.target.value;
-        this.setState(user)
+        this.setState({user:user})
     }
 
     render() {
@@ -120,7 +120,7 @@ class Login extends React.Component {
                             </div>
                             <div>
                                 <label>Mot de passe:</label>
-                                <input type="password" name="password"
+                                <input type="password" id="password" name="password"
                                        onChange={e => this.setPassword(e)}/>
                             </div>
                             <div className="flex wrap">

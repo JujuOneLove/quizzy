@@ -1,68 +1,70 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![alt text](https://administration.julienvanroy.fr/wp-content/uploads/2019/05/logo.png)
+# Projet M.E.R.N
 
-## Available Scripts
+Quizzy est une application web (les parties client et serveur) qui permet de concevoir des quiz et bien sur de jouer.
 
-In the project directory, you can run:
+## Fonctionnalités
+
+- Affiche la liste de tous les quiz (nom et icône).
+- Affiche la liste des quiz correspondant à un ou plusieurs mots-clés.
+- Permet à un joueur non identifié de jouer à un quiz.
+- Permet à un joueur non identifié de créer un quiz.
+- Gére les propositions de réponses données par un texte.
+- Gére les propositions de réponses données par une image.
+- Calcule et afficher le score d'un joueur en fin de partie.
+- Gére l'identification et l'authentification des joueurs. Dans ce cas, modifier les droits de création de quiz, mémoriser les scores, etc.
+- Gére les statistiques des quiz : nombre de fois où ils ont été joués, score moyen, meilleur score, etc...
+
+## Tests
+
+L'application propose des tests unitaires automatisés . (Client & Serveur)
+
+## Design
+
+Il n'y a pas de contraintes obligatoires sur le design. 
+Mise en place d'un style "mobile first".
+
+## Gestion de votre projet
+
+Il nous était demandé de bien préparer le projet en amont des développements et d’en assurer le suivi tout au long des trois jours.
+
+### Préparation du projet
+
+Avant de nous lancer dans la réalisation de notre code, nous devions :
+
+- Découper le projet en tâches.
+- Estimer la charge de chaque tâche.
+- Ordonnancer les tâches.
+- Partager notre code
+
+### Suivi au quotidien sur Trello.com
+
+- Découpage / Identification.
+- Deadlines.
+- Répartition.
+- Suivi d’avancement.
+- Présentation de la gestion du projet
+
+## Scripts package.json
+
+Dans le répertoire du projet, vous pouvez exécuter:
 
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Client : [http://localhost:3000](http://localhost:3000)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### `npm server`
+
+Server : [http://localhost:8081](http://localhost:8081)
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Test Component
 
-### `npm run build`
+### `npm mocha`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Test Server
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### `npm resetDB`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Reset Data MondoDB
