@@ -79,7 +79,7 @@ class Quiz extends Component {
                         </div>
                         <CurrentScore total={questions.length}
                                       score={this.state.currentScore}/>
-                        <div className="person">crée par {this.state.quiz.createdBy ? <Link to={"/user/"+this.state.quiz.createdBy}>{this.state.quiz.createdBy}</Link> : "un anonyme"}</div>
+                        <div className="person">créé par {this.state.quiz.createdBy ? <Link to={"/user/"+this.state.quiz.createdBy}>{this.state.quiz.createdBy}</Link> : "un anonyme"}</div>
                     </article>);
             }
         };
