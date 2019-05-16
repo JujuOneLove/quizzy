@@ -6,6 +6,7 @@ const router = express.Router();
 let Quizzes = require('./db/schemaQuizzes');
 let Users = require('./db/schemaUsers');
 const md5 = require('md5');
+const fs = require('fs');
 
 router
     .use(express.static('resources'))
@@ -129,8 +130,8 @@ router
         let keys = Object.keys(picture)
         let cpt = 0;
         keys.forEach((key) => {
-            if(parseInt(key,10) === cpt){
-                if (parseInt(key,10) === 0) {
+            if (parseInt(key, 10) === cpt) {
+                if (parseInt(key, 10) === 0) {
                     picture[key].mv(__dirname + '/../public/img/' + picture[key].name,
                         (err) => {
                             if (err)
@@ -149,7 +150,7 @@ router
             }
             cpt++;
         });
-        if(logo === false){
+        if (logo === false) {
             picture.mv(__dirname + '/../public/img/' + picture.name,
                 (err) => {
                     if (err)
@@ -160,7 +161,7 @@ router
 
         Quizzes.create({
             name: quiz.name,
-            logo:  quiz.logo,
+            logo: quiz.logo,
             createdBy: quiz.createdBy,
             keywords: JSON.parse(quiz.keywords),
             questionsAndAnswers: JSON.parse(quiz.questions)
@@ -178,10 +179,31 @@ router
         });
     })
     //Delete Quiz
-    .delete("/auth/quizzes/:id",(req, res) => {
-        Quizzes.deleteOne({_id:req.params.id}, function (err) {
-            if(err) res.status(400);
+    .delete("/auth/quizzes/:id", (req, res) => {
+        Quizzes.findById(req.params.id, function (err, data) {
+            if (err) res.status(400);
+            else {
+                if (data) {
+                    fs.unlink(__dirname + '/../public/' + data.logo, (err) => {
+                        if (err) res.status(400);
+                    });
+                    for (let i = 0; i < data.questionsAndAnswers.length; i++) {
+                        for (let j = +0; j < data.questionsAndAnswers[i].answers.length; j++) {
+                            if (data.questionsAndAnswers[i].answers[j].image) {
+                                fs.unlink(__dirname + '/../public/' + data.questionsAndAnswers[i].answers[j].image, (err) => {
+                                    if (err) res.status(400);
+                                });
+                            }
+                        }
+                    }
+                }
+            }
         });
+
+        Quizzes.deleteOne({_id: req.params.id}, function (err) {
+            if (err) res.status(400);
+        });
+
         res.status(200);
         res.send("ok");
     })
