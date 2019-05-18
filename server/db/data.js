@@ -1,5 +1,3 @@
-//use exple1
-
 db.users.remove({});
 db.quizzes.remove({});
 db.users.insert(
@@ -22,12 +20,11 @@ db.users.insert(
         "name": "jul",
         "password": "f05c8652de134d5c50729fa1b31d355b"
     });
-var user2 = db.users.findOne({"name": "antho"});
 
 var quiz1 = db.quizzes.insert({
     "name": "La France",
     "logo": "/img/france.jpg",
-    "createdBy": user2,
+    "createdBy": "antho",
     "keywords": ["pays", "france"],
     "questionsAndAnswers": [
         {
@@ -60,7 +57,7 @@ var quiz1 = db.quizzes.insert({
 var quiz2 = db.quizzes.insert({
     "name": "La Coupe du monde de football",
     "logo": "/img/coupe.jpg",
-    "createdBy": user2,
+    "createdBy": "",
     "keywords": ["coupe du monde", "football", "soccer", "cdm", "top"],
     "questionsAndAnswers": [
         {
@@ -88,12 +85,12 @@ var quiz2 = db.quizzes.insert({
                 {"valid": true, "answerText": "Faux","image": ""}]
         },
         {
-            "question": "Avec quel ballon joue-t-on au football?",
+            "question": "Avec quel ballon joue-t-on au football ?",
             "point": 1,
             "image": true,
             "answers": [
-                {"valid": false, "answerText": "Vrai","image": "/img/ballon1.jpg"},
-                {"valid": true, "answerText": "Faux","image": "/img/ballon2.jpg"}]
+                {"valid": false, "answerText": "Vrai","image": "/img/questions/ballon1.jpg"},
+                {"valid": true, "answerText": "Faux","image": "/img/questions/ballon2.jpg"}]
         },
     ]
 });
